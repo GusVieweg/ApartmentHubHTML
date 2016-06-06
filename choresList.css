@@ -1,0 +1,62 @@
+html, body {
+  margin: 0; 
+  padding: 0;
+  background-color: #FFAF58;
+  overflow: auto;
+  min-width: 1140px;
+}
+
+table, tr {
+	width: 90%;
+	margin: 0 auto;
+}
+
+td {
+	padding: 25px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.achievement {
+	width: 90%;
+	height: 10%;
+	background-color: white;
+	color: black;
+	margin: 0% 5% 1% 5%;
+	padding: 0% 5%;
+	border-radius: 10px;
+}
+
+.achievementText {
+	padding: 0% 10%;
+}
+
+.return {
+	width: 15%;
+	height: 10%;
+	margin: 0% 0% 10% 25%;
+	float: left;
+	text-decoration: none;
+	color: white;
+	border: solid 2px grey;
+	background-color: grey;
+	border-radius: 10px;
+	position: fixed;
+	bottom: -10%;
+	vertical-align: middle;
+}
+
+.textReturn {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-decoration: none;
+	color: white;
+}
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
