@@ -12,7 +12,7 @@ table, tr {
 }
 
 td {
-	padding: 25px;
+	padding: 10px;
 	font-weight: bold;
 	text-align: center;
 }
@@ -27,14 +27,11 @@ td {
 
 .lightPink {
 	background-color: #FCAACD;
-}
-
-.leftCorner {
-	border-radius: 20px 0px 0px 0px;
+	border-radius: 10px;
 }
 
 .return {
-	width: 15%;
+	width: 10%;
 	height: 10%;
 	margin: 0% 0% 10% 25%;
 	float: left;
@@ -49,9 +46,9 @@ td {
 }
 
 .addALocation {
-	width: 15%;
+	width: 10%;
 	height: 10%;
-	margin: 0% 0% 10% 55%;
+	margin: 0% 0% 10% 45%;
 	float: left;
 	text-decoration: none;
 	color: white;
@@ -61,6 +58,32 @@ td {
 	position: fixed;
 	bottom: -10%;
 	vertical-align: middle;
+}
+
+.removeALocation {
+	width: 10%;
+	height: 10%;
+	margin: 0% 0% 10% 65%;
+	float: left;
+	text-decoration: none;
+	color: white;
+	border: solid 2px grey;
+	background-color: grey;
+	border-radius: 10px;
+	position: fixed;
+	bottom: -10%;
+	vertical-align: middle;
+}
+
+#selectDivToRemove {
+	width: 100%;
+	height: 20%;
+	margin: 0%;
+	color: white;
+	background-color: #FA569B;
+	position: fixed;
+	bottom: 5%;
+	z-index: 9999;
 }
 
 .textReturn {

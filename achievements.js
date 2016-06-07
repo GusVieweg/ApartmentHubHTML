@@ -1,7 +1,5 @@
 /* RESET LOCAL STORAGE: {"achievements":{"numberOfEntries":0,"achievement":[]}} */
 
-/* 	USAGE:
-	addSomething("name of page","name of division being inserted")*/
 function addAchievement() {
 	var myData = JSON.parse(localStorage.getItem('achievementsStorage'));
 	var promptMessage = "Please enter your achievement";

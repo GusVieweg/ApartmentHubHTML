@@ -51,19 +51,19 @@ td {
 	font-size: 12px;
 }
 
-td.upperLeft {
+.upperLeft {
 	border-radius: 10px 0px 0px 0px;
 }
 
-td.upperRight {
+.upperRight {
 	border-radius: 0px 10px 0px 0px;
 }
 
-td.lowerLeft {
+.lowerLeft {
 	border-radius: 0px 0px 10px 0px;
 }
 
-td.lowerRight {
+.lowerRight {
 	border-radius: 0px 0px 0px 10px;
 }
 

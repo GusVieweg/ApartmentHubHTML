@@ -3,54 +3,64 @@
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 		<link rel="stylesheet" type="text/css" href="wua.css">
+		<script src="wua.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script> <!-- JQUERY -->
 	</head>
-	<body>
+	<body onload="loadWUAPage()">
 		<div class="container-fluid">
 			<div>
 				<h1 class="text-center text-white"><i>Where is everyone?</i></h1>
 				<hr />
 			</div>
-			<div class="row tableContainer">
+			<div class="row" id="tableContainer">
 				<table class="text-center lightPink" id="wuaTable">
 					<tr>
-						<th class="text-center tableBorder bottomTB leftCorner"><h3>Patty's Locations</h3></th>
-						<th class="text-center tableBorder bottomTB"><h3>Gus's Locations</h3></th>
-						<th class="text-center bottomTB"><h3>Chris's Locations</h3></th>
+						<th class="text-center tableBorder bottomTB upperLeft" id="pattyLocations0"><h3>Patty's Locations</h3></th>
+						<th class="text-center tableBorder bottomTB" id="gusLocations1"><h3>Gus's Locations</h3></th>
+						<th class="text-center bottomTB upperRight" id="chrisLocations2"><h3>Chris's Locations</h3></th>
 					</tr>
 					<tr>
-						<td class="tableBorder">Home</td>
-						<td class="tableBorder">Home</td>
-						<td>Home</td>
+						<td class="tableBorder"></td>
+						<td class="tableBorder"></td>
+						<td></td>
 					</tr>
 					<tr>
-						<td class="tableBorder">Main Campus</td>
-						<td class="tableBorder">Main Campus</td>
-						<td>Main Campus</td>
+						<td class="tableBorder"></td>
+						<td class="tableBorder"></td>
+						<td></td>
 					</tr>
 					<tr>
-						<td class="tableBorder">Centennial Campus</td>
-						<td class="tableBorder">Centennial Campus</td>
-						<td>Centennial Campus</td>
+						<td class="tableBorder"></td>
+						<td class="tableBorder"></td>
+						<td></td>
 					</tr>
 					<tr>
-						<td class="tableBorder">Parent's House</td>
-						<td class="tableBorder">Parent's House</td>
-						<td>Parent's House</td>
+						<td class="tableBorder"></td>
+						<td class="tableBorder"></td>
+						<td></td>
 					</tr>
 					<tr>
-						<td class="tableBorder">Stefan's House</td>
-						<td class="tableBorder">Makerspace</td>
-						<td>D.H. Hill</td>
+						<td class="tableBorder"></td>
+						<td class="tableBorder"></td>
+						<td></td>
 					</tr>
 				</table>
 			</div>
-			<a href="ahub.html">
-				<div class="return">
-					<p class="text-center textReturn">Return home</p>
+			<div class="row" id="selectDivToRemove">
+				<h1 class="text-center">Whose column of locations are you changing?</h1>
+			</div>
+			<div class="row">
+				<a href="ahub.html">
+					<div class="return">
+						<p class="text-center textReturn">Return home</p>
+					</div>
+				</a>
+				<div class="addALocation">
+					<p class="text-center textReturn" onclick="addLocation()">Add a location</p>
 				</div>
-			</a>
-			<div class="addALocation">
-				<p class="text-center textReturn">Add a reminder</p>
+				<div class="removeALocation">
+					<p class="text-center textReturn" onclick="removeLocation()">Remove a location</p>
+				</div>
 			</div>
 		</div>
 	</body>
