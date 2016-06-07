@@ -10,6 +10,10 @@ html, body {
 	color: white;
 }
 
+.headTitle {
+	float: left;
+}
+
 .leftNarrowStack {
 	width: 22.5%;
 	float: left;
@@ -44,16 +48,28 @@ table, tr {
 td {
 	padding: 15px;
 	font-weight: bold;
+	font-size: 12px;
 }
 
-a:visited {
-	text-decoration: none;
-	color: white;
+td.upperLeft {
+	border-radius: 10px 0px 0px 0px;
 }
 
-a:hover {
+td.upperRight {
+	border-radius: 0px 10px 0px 0px;
+}
+
+td.lowerLeft {
+	border-radius: 0px 0px 10px 0px;
+}
+
+td.lowerRight {
+	border-radius: 0px 0px 0px 10px;
+}
+
+a:link, a:visited, a:hover, a:active {
 	text-decoration: none;
-	color: white;
+	color:white;
 }
 
 .wuaGreyTR {

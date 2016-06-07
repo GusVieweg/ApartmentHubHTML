@@ -94,6 +94,14 @@ td {
 	z-index: 9999;
 }
 
+.verticalCenter {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-decoration: none;
+}
+
 .textReturn {
 	position: absolute;
 	top: 50%;

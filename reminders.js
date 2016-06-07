@@ -1,11 +1,10 @@
 /* RESET LOCAL STORAGE: {"reminders":{"numberOfEntries":0,"reminder":[]}} */
 
 /* 	USAGE:
-
 	addSomething("name of page","name of division being inserted")*/
-function addSomething(something, divisionName) {
+function addReminder() {
 	var myData = JSON.parse(localStorage.getItem('remindersStorage'));
-	var promptMessage = "Please enter your " + something;
+	var promptMessage = "Please enter your reminder";
     var finalSubmit = prompt(promptMessage, "");
     var slotcontainer, slot;
     
@@ -30,12 +29,10 @@ function addSomething(something, divisionName) {
     	}
     	myData.reminders.reminder.push(element);
     	localStorage.setItem('remindersStorage', JSON.stringify(myData));
-
-        // document.getElementById(divisionName).appendChild(div);
     }
 }
 
-function removeSomething(something, divisionName) {
+function removeReminder() {
 	var myData = JSON.parse(localStorage.getItem('remindersStorage'));
 	var selectedDiv;
 	$("#selectDivToRemove").show();
@@ -70,7 +67,7 @@ function removeSomething(something, divisionName) {
 	})
 }
 
-function load() {
+function loadRemindersPage() {
 	var myData = JSON.parse(localStorage.getItem('remindersStorage'));
 	$("#selectDivToRemove").hide();
 	for( var j=0 ; j<5 ; j++ ) {

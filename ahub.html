@@ -3,11 +3,14 @@
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 		<link rel="stylesheet" type="text/css" href="ahub.css">
+		<script src="ahub.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script> <!-- JQUERY -->
 	</head>
-	<body>
+	<body onload="updateClock(); loadReminders(); loadAchievements();">
 		<div class="container-fluid">
-			<div>
-				<h1 class="text-center text-white"><i>THE 1234 AT A GLANCE</i></h1>
+			<div class="row">
+				<div class="col-xs-6"><h1 class="text-white text-center"><i>THE 1234 AT A GLANCE</i></h1></div>
+				<div class="col-xs-6 text-white" id="datetime"></div>
 			</div>
 			<div class="row">
 				<div class="leftNarrowStack">
@@ -16,16 +19,24 @@
 						<hr />
 						<table class="text-center" id="wuaTable">
 							<tr class="wuaGreyTR">
+								<td>WHO?</td>
+								<td>WHERE</td>
+								<td>ETA</td>
+							</tr>
+							<tr class="wuaGreyTR">
 								<td>PATTY</td>
 								<td>China</td>
+								<td>One week</td>
 							</tr>
 							<tr class="wuaGreyTR">
 								<td>GUS</td>
 								<td>Makerspace</td>
+								<td>7:00P</td>
 							</tr>
 							<tr>
 								<td>CHRIS</td>
 								<td>Charlotte, NC</td>
+								<td>Never</td>
 							</tr>
 						</table>
 					</div>
@@ -56,17 +67,20 @@
 						<h3 class="text-center text-white"><a href="reminders.html">Reminders</a></h3>
 						<hr />
 						<table class="text-center" id="wuaTable">
+							<tr id="noReminders">
+								<td width="90%" class="text-center" style="border-radius: 20px;text-size:20px;">No reminders to show.</td>
+							</tr>
 							<tr class="incompleteTask">
-								<td width="15%">P</td>
-								<td width="75%">Do your homework</td>
+								<td width="15%" class="upperLeft">P</td>
+								<td width="75%" class="upperRight" id="reminder0"></td>
 							</tr>
 							<tr class="incompleteTask">
 								<td width="15%">G</td>
-								<td width="75%">Mix Passion Fruit</td>
+								<td width="75%" id="reminder1"></td>
 							</tr>
 							<tr class="incompleteTask">
-								<td width="15%">C</td>
-								<td width="75%">Make cyborgz</td>
+								<td width="15%" class="lowerRight">C</td>
+								<td width="75%" class="lowerLeft" id="reminder2"></td>
 							</tr>
 						</table>
 					</div>
@@ -74,17 +88,20 @@
 						<h3 class="text-center text-white"><a href="achievements.html">Recent Achievements</a></h3>
 						<hr />
 						<table class="text-center" id="wuaTable">
+							<tr id="noAchievements">
+								<td width="90%" class="text-center" style="border-radius: 20px;text-size:20px;">No achievements to show.<br />Go do something!</td>
+							</tr>
 							<tr class="incompleteTask">
-								<td width="15%">P</td>
-								<td width="75%">Do your homework</td>
+								<td width="15%" class="upperLeft">P</td>
+								<td width="75%" class="upperRight" id="achievement0"></td>
 							</tr>
 							<tr class="incompleteTask">
 								<td width="15%">G</td>
-								<td width="75%">Mix Passion Fruit</td>
+								<td width="75%" id="achievement1"></td>
 							</tr>
 							<tr class="incompleteTask">
-								<td width="15%">C</td>
-								<td width="75%">Make cyborgz</td>
+								<td width="15%" class="lowerRight">C</td>
+								<td width="75%" class="lowerLeft" id="achievement2"></td>
 							</tr>
 						</table>
 					</div>
