@@ -3,32 +3,17 @@
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 		<link rel="stylesheet" type="text/css" href="achievements.css">
-		<script src="achievements.js"></script>
-		<script type="text/javascript" src="data.json"></script>
+		<script src="entries.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script> <!-- JQUERY -->
 	</head>
-	<body onload="loadAchievementsPage()">
+	<body onload="loadEntryPage('achievement')">
 		<div class="container-fluid">
 			<div id="achievementsList">
 				<div>
 					<h1 class="text-center text-white"><i>Achievements</i></h1>
 					<hr />
 				</div>
-				<div class="achievement vcenter" id="slotcontainer0">
-					<h3 id="slot0"></h3>
-				</div>
-				<div class="achievement vcenter" id="slotcontainer1">
-					<h3 id="slot1"></h3>
-				</div>
-				<div class="achievement vcenter" id="slotcontainer2">
-					<h3 id="slot2"></h3>
-				</div>
-				<div class="achievement vcenter" id="slotcontainer3">
-					<h3 id="slot3"></h3>
-				</div>
-				<div class="achievement vcenter" id="slotcontainer4">
-					<h3 id="slot4"></h3>
-				</div>
+				<div id="achievementPods"></div>
 			</div>
 			<div id="selectDivToRemove">
 				<h1 class="text-center">Select achievement to remove</h1>
@@ -38,11 +23,11 @@
 					<p class="text-center textReturn">Return home</p>
 				</div>
 			</a>
-			<div class="addAnAchievement" onclick="addAchievement()">
+			<div class="addAnAchievement" onclick="addEntry('achievement')">
 				<p class="text-center textReturn">Add an achievement</p>
 			</div>
 			<div class="deleteAnAchievement">
-				<p class="text-center textReturn" onclick="removeAchievement()">Delete an achievement</p>
+				<p class="text-center textReturn" onclick="removeEntry('achievement')">Delete an achievement</p>
 			</div>
 		</div>
 	</body>

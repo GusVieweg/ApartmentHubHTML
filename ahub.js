@@ -33,7 +33,7 @@ function loadAchievements() {
 			$("#achievement" + j).parent().show();
 		}
 	}
-	else if( myData.achievements.numberOfEntries == 0 ) {
+	else if( myData.maxEntries == 0 ) {
 		$("#noAchievements").show();
 	}
 }
