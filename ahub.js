@@ -14,7 +14,7 @@ function loadReminders() {
 			$("#reminder" + j).parent().show();
 		}
 	}
-	else if( myData.reminders.numberOfEntries == 0 ) {
+	else if( myData.maxEntries == 0 ) {
 		$("#noReminders").show();
 	}
 }

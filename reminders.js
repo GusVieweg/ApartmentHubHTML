@@ -1,83 +1,149 @@
-/* RESET LOCAL STORAGE: {"reminders":{"numberOfEntries":0,"reminder":[]}} */
+/* RESET LOCAL STORAGE: {"reminders":{"patty":{"numberOfEntries":0},"gus":{"numberOfEntries":0},"chris":{"numberOfEntries":0}},"maxEntries":0} */
 
 /* 	USAGE:
 	addSomething("name of page","name of division being inserted")*/
+
 function addReminder() {
 	var myData = JSON.parse(localStorage.getItem('remindersStorage'));
-	var promptMessage = "Please enter your reminder";
-    var finalSubmit = prompt(promptMessage, "");
-    var slotcontainer, slot;
-    
-    if (finalSubmit != null) {
-    	for( var i=0 ; i<5 ; i++ ) {
-    		if( document.getElementById("slot" + i).innerHTML === "" ) {
-    			slot = document.getElementById("slot" + i);
-				slot.innerHTML = finalSubmit;
-				slotcontainer = "#slotcontainer" + i;
-				$(slotcontainer).show();
-				break;
-    		}
-    	}
 
-    	var element = {};
-    	element.descriptionText = finalSubmit;
-    	if( typeof myData.reminders === "undefined" ) {
-    		element.numberOfEntries = 1;
-    	}
-    	else {
-    		myData.reminders.numberOfEntries++;
-    	}
-    	myData.reminders.reminder.push(element);
-    	localStorage.setItem('remindersStorage', JSON.stringify(myData));
+	var promptMessage = "Please enter your reminder";
+    var reminderSubmit = prompt(promptMessage, "");
+    var promptMessage2 = "Please enter a letter";
+    var letterSubmit = prompt(promptMessage2, "");
+    var tc = document.getElementById("reminderPods");
+    var people = ["patty", "gus", "chris"];
+    var person = letterToPerson(letterSubmit);
+    var tabularData, tabularDataChild;
+
+    if (reminderSubmit != "") {
+        var personPlace = people.indexOf(person);
+
+        var string = "reminder" + myData.reminders[person].numberOfEntries;
+        
+    	if( myData.maxEntries === myData.reminders[person].numberOfEntries ) {
+            console.log("Number of entries is equal to max entries");
+            myData.maxEntries++;
+        } else {
+            console.log("Number of entries is unequal to max entries")
+        }
+
+        $('#reminderPods').append("<div class='reminder vcenter "+person+"'><h3>" + reminderSubmit + "</h3></div>");
+
+        myData.reminders[person].numberOfEntries++;
+        myData.reminders[person][string] = reminderSubmit;
+        localStorage.setItem('remindersStorage', JSON.stringify(myData));
     }
+    $('#selectDivToRemove').hide();
 }
 
 function removeReminder() {
-	var myData = JSON.parse(localStorage.getItem('remindersStorage'));
-	var selectedDiv;
-	$("#selectDivToRemove").show();
-	$('.reminder').bind('click', function(){
-		selectedDiv = parseInt(this.id.slice(-1));
-		if( myData.reminders.numberOfEntries > 4 ) {
-			$("#slotcontainer4").hide();
-			console.log("Hiding slotcontainer4");
-		}
-		else {
-			var divToHide = (myData.reminders.numberOfEntries-1);
-			$('#slotcontainer' + divToHide).hide();
-			document.getElementById("slot" + divToHide).innerHTML = "";
-			console.log("Hiding " + divToHide);
-		}
-		myData.reminders.reminder.splice(selectedDiv, 1);
-		console.log("Spliced #slotcontainer" + selectedDiv)
-		if( myData.reminders.numberOfEntries > 1 ) {
-			for( var i=selectedDiv ; i<(myData.reminders.numberOfEntries-selectedDiv) ; i++ ) {
-				if( (selectedDiv == 0)&&(i==myData.reminders.numberOfEntries-1) ) {
-					break;
-				}
-				console.log(myData.reminders.reminder[i].descriptionText)
-				document.getElementById("slot" + i).innerHTML = myData.reminders.reminder[i].descriptionText;
-			}
-		}
-		myData.reminders.numberOfEntries--;
-		console.log("Number of entries: " + myData.reminders.numberOfEntries)
-		$('.reminder').unbind('click');
-		$("#selectDivToRemove").hide();
-		localStorage.setItem('remindersStorage', JSON.stringify(myData));
-	})
+    var myData = JSON.parse(localStorage.getItem('remindersStorage'));
+    var elements = document.getElementsByClassName('reminder'),
+        toRemoveNum, person, personPlace, varName,
+        people = ['patty', 'gus', 'chris'];
+
+    $("#selectDivToRemove").show();
+
+    for( var i=0, len=elements.length ; i<len ; i++ ) {
+        elements[i].onclick = function(){
+            // Get basic info
+            var classes=$(this).attr("class").split(" "),
+    			person=classes[classes.length-1];
+            personPlace = people.indexOf(person);
+
+            // Get rid of locations on the screen
+            switchColumn($(this));
+            
+            // Get rid of locations in the JSON
+            toRemoveNum = ($(this).index());
+            switchJSON(myData, person, toRemoveNum);
+
+            // Update max entries count
+            updateMaxEntries(myData, people);
+
+            // Clean up
+            for( var j=0 ; j<len ; j++ ) {
+                elements[j].onclick = null;
+            }
+            deleteExcessiveRow(myData, elements);
+            $('#selectDivToRemove').hide();
+        }
+    }
 }
 
 function loadRemindersPage() {
 	var myData = JSON.parse(localStorage.getItem('remindersStorage'));
-	$("#selectDivToRemove").hide();
-	for( var j=0 ; j<5 ; j++ ) {
-		$("#slotcontainer" + j).hide();
-	}
-	if( myData.reminders.numberOfEntries > 0 ) {
-		for( var i=0 ; i<myData.reminders.numberOfEntries ; i++ ) {
-			document.getElementById("slot" + i).innerHTML = myData.reminders.reminder[i].descriptionText;
-			$("#slotcontainer" + i).show();
-		}
-	}
-	localStorage.setItem('remindersStorage', JSON.stringify(myData));
+    var people = ["patty", "gus", "chris"];
+
+    $("#selectDivToRemove").hide();
+
+    for( var i=0 ; i<3 ; i++ ) {
+        var person = people[i];
+        for( var j=0 ; j<myData.reminders[person].numberOfEntries ; j++ ) {
+        	var reminderString = "reminder" + j;
+            $('#reminderPods').append("<div class='reminder vcenter "+person+"'><h3>"+myData.reminders[person][reminderString]+"</h3></div>");
+        }
+    }
+    updateMaxEntries(myData, people);
+}
+
+function letterToPerson(letter) {
+    var person;
+    switch( letter ) {
+        case 'p': person = "patty"; break;
+        case "g": person = "gus";  break;
+        case "c": person = "chris"; break;
+        default: alert("Person unrecognized"); person = 0;
+    }
+    return person;
+}
+
+function switchJSON(myData, person, startingNum) {
+    toRemove = "reminder" + startingNum;
+    console.log(myData.reminders[person], person);
+    for( var j=startingNum ; j<myData.reminders[person].numberOfEntries ; j++ ) {
+        var toReplace = "reminder" + j,
+            replaceWith = "reminder" + (j+1),
+            replaceString = myData.reminders[person][replaceWith];
+        if( j != (myData.reminders[person].numberOfEntries-1) ) {
+            console.log("Replacing " + myData.reminders[person][toReplace] + " with " + myData.reminders[person][replaceWith]);
+            myData.reminders[person][toReplace] = replaceString;
+        } else {
+            console.log("Deleting JSON");
+            myData.reminders[person].numberOfEntries--;
+            delete myData.reminders[person][toReplace];
+        }
+    }
+    localStorage.setItem('remindersStorage', JSON.stringify(myData));
+} 
+
+function switchColumn(selected) {
+    var next = selected.next();
+    if( typeof next[0] !== "undefined" ) {
+        var nextText = next[0].children[0].innerHTML,
+            thisTextContainer = selected[0].children[0];
+        thisTextContainer.innerHTML = nextText;
+        switchColumn(next);
+    } else {
+        selected[0].children[0].innerHTML = "";
+    }
+}
+
+function updateMaxEntries(myData, people) {
+    var winner = 0;
+    for( var i=0 ; i<people.length ; i++ ) {
+        var person = people[i];
+        if( myData.reminders[person].numberOfEntries > winner ) {
+            winner = myData.reminders[person].numberOfEntries;
+        }
+    }
+    myData.maxEntries = winner;
+    localStorage.setItem('remindersStorage', JSON.stringify(myData));
+}
+
+function deleteExcessiveRow(myData, elements) {
+    var rowCount = elements.length;
+    if( myData.maxEntries !== rowCount ) {
+        $('#reminderPods div:last').remove();
+    }
 }

@@ -76,6 +76,10 @@ a:link, a:visited, a:hover, a:active {
 	border-bottom: 2px solid white;
 }
 
+#wuaTable {
+	margin-top: -5%;
+}
+
 #chrisTR {
 	border-color: green;
 	border-width: 5px;

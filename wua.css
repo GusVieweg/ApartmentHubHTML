@@ -17,7 +17,11 @@ td {
 	text-align: center;
 }
 
-.tableBorder {
+.patty {
+	border-right: 2px solid white;
+}
+
+.gus {
 	border-right: 2px solid white;
 }
 

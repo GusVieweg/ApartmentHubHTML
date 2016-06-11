@@ -1,4 +1,4 @@
-// RESET LOCAL STORAGE: {"locations":{"numberOfEntries":0,"reminder":[]}}
+// RESET LOCAL STORAGE: {"locations":{"patty":{"numberOfEntries":0},"gus":{"numberOfEntries":0},"chris":{"numberOfEntries":0}},"maxEntries":0}
 // EXAMPLE LOCAL STORAGE: {"locations":{"patty":{"numberOfEntries":5,"location0":"Home","location1":"Main Campus","location2":"Centennial Campus","location3":"Parent's House","location4":"Stefan's House"},"gus":{"numberOfEntries":4,"location0":"Home","location1":"Main Campus","location2":"Centennial Campus","location3":"Addie's House"},"chris":{"numberOfEntries":1,"location0":"Work"}},"maxEntries":5}
 
 function addLocation() {
@@ -12,7 +12,6 @@ function addLocation() {
     var person = letterToPerson(letterSubmit);
     var tc = document.getElementById("wuaTable");
     var people = ["patty", "gus", "chris"];
-    var element = {};
     var tabularData, tabularDataChild;
 
     if (person != 0) {
@@ -22,18 +21,15 @@ function addLocation() {
         
     	if( myData.maxEntries === myData.locations[person].numberOfEntries ) {
             console.log("Number of entries is equal to max entries");
-            $('#wuaTable tbody:last').append("<tr><td class='tableBorder'></td><td class='tableBorder'></td><td></td></tr>");
-            tabularData = tc.getElementsByTagName('tbody')[0];
-            tabularDataChild = tabularData.children[myData.locations[person].numberOfEntries+1];
-            tabularDataChild.children[personPlace].innerHTML = locationSubmit;
+            $('#wuaTable tbody:last').append("<tr><td class='patty'></td><td class='gus'></td><td class='chris'></td></tr>");
             myData.maxEntries++;
         } else {
             console.log("Number of entries is unequal to max entries")
-            tabularData = tc.getElementsByTagName('tbody')[0];
-            tabularDataChild = tabularData.children[myData.locations[person].numberOfEntries+1];
-            tabularDataChild.children[personPlace].innerHTML = locationSubmit;
         }
 
+        tabularData = tc.getElementsByTagName('tbody')[0];
+        tabularDataChild = tabularData.children[myData.locations[person].numberOfEntries+1];
+        tabularDataChild.children[personPlace].innerHTML = locationSubmit;
         myData.locations[person].numberOfEntries++;
         myData.locations[person][string] = locationSubmit;
         localStorage.setItem('locationsStorage', JSON.stringify(myData));
@@ -42,42 +38,37 @@ function addLocation() {
 }
 
 function removeLocation() {
-    var myData = JSON.parse(localStorage.getItem('achievementsStorage'));
-    var selectedElement;
-    var tc = document.getElementById("wuaTable");
-    var elements = tc.getElementsByTagName('td');
+    var myData = JSON.parse(localStorage.getItem('locationsStorage'));
+    var tc = document.getElementById("wuaTable"),
+        elements = tc.getElementsByTagName('td'),
+        toRemoveNum, person, personPlace,
+        people = ['patty', 'gus', 'chris'];
+
     $("#selectDivToRemove").show();
-    
+    deleteExcessiveRow(myData);
+
     for( var i=0, len=elements.length ; i<len ; i++ ) {
         elements[i].onclick = function(){
-            console.log(this);
-            // selectedDiv = parseInt(this.id.slice(-1));
-            // if( myData.achievements.numberOfEntries > 4 ) {
-            //     $("#slotcontainer4").hide();
-            //     console.log("Hiding slotcontainer4");
-            // }
-            // else {
-            //     var divToHide = (myData.achievements.numberOfEntries-1);
-            //     $('#slotcontainer' + divToHide).hide();
-            //     document.getElementById("slot" + divToHide).innerHTML = "";
-            //     console.log("Hiding " + divToHide);
-            // }
-            // myData.achievements.achievement.splice(selectedDiv, 1);
-            // console.log("Spliced #slotcontainer" + selectedDiv)
-            // if( myData.achievements.numberOfEntries > 1 ) {
-            //     for( var i=selectedDiv ; i<(myData.achievements.numberOfEntries-selectedDiv) ; i++ ) {
-            //         if( (selectedDiv == 0)&&(i==myData.achievements.numberOfEntries-1) ) {
-            //             break;
-            //         }
-            //         console.log(myData.achievements.achievement[i].descriptionText)
-            //         document.getElementById("slot" + i).innerHTML = myData.achievements.achievement[i].descriptionText;
-            //     }
-            // }
-            // myData.achievements.numberOfEntries--;
-            // console.log("Number of entries: " + myData.achievements.numberOfEntries)
-            // $('.achievement').unbind('click');
-            // $("#selectDivToRemove").hide();
-            // localStorage.setItem('achievementsStorage', JSON.stringify(myData));
+            // Get basic info
+            person = this.className;
+            personPlace = people.indexOf(person);
+
+            // Get rid of locations on the screen
+            switchColumn($(this).parent(), personPlace);
+            
+            // Get rid of locations in the JSON
+            toRemoveNum = ($(this).parent().index()-1);
+            switchJSON(myData, person, toRemoveNum);
+
+            // Update max entries count
+            updateMaxEntries(myData, people);
+
+            // Clean up
+            for( var j=0 ; j<len ; j++ ) {
+                elements[j].onclick = null;
+            }
+            deleteExcessiveRow(myData);
+            $('#selectDivToRemove').hide();
         }
     }
 }
@@ -90,6 +81,10 @@ function loadWUAPage() {
 
     $("#selectDivToRemove").hide();
     
+    for( var h=0 ; h<myData.maxEntries ; h++ ) {
+        $('#wuaTable tbody:last').append("<tr><td class='patty'></td><td class='gus'></td><td class='chris'></td></tr>");
+    }
+
     for( var i=0 ; i<3 ; i++ ) {
         var person = people[i];
         for( var j=0 ; j<myData.locations[person].numberOfEntries ; j++ ) {
@@ -99,6 +94,7 @@ function loadWUAPage() {
             }
         }
     }
+    updateMaxEntries(myData, people);
     //localStorage.setItem('locationsStorage', JSON.stringify(myData));
 }
 
@@ -111,4 +107,53 @@ function letterToPerson(letter) {
         default: alert("Person unrecognized"); person = 0;
     }
     return person;
+}
+
+function switchColumn(jParent, pp) {
+    var next = jParent.next();
+    if( typeof next[0] !== "undefined" ) {
+        var nextText = next[0].children[pp].innerHTML,
+            thisTextContainer = jParent[0].children[pp];
+        thisTextContainer.innerHTML = nextText;
+        switchColumn(next, pp);
+    } else {
+        jParent[0].children[pp].innerHTML = "";
+    }
+}
+
+function switchJSON(myData, person, startingNum) {
+    toRemove = "location" + startingNum;
+    for( var j=startingNum ; j<myData.locations[person].numberOfEntries ; j++ ) {
+        var toReplace = "location" + j,
+            replaceWith = "location" + (j+1),
+            replaceString = myData.locations[person][replaceWith];
+        if( j != (myData.locations[person].numberOfEntries-1) ) {
+            console.log("Replacing " + myData.locations[person][toReplace] + " with " + myData.locations[person][replaceWith]);
+            myData.locations[person][toReplace] = replaceString;
+        } else {
+            console.log("Deleting JSON");
+            myData.locations[person].numberOfEntries--;
+            delete myData.locations[person][toReplace];
+        }
+    }
+    localStorage.setItem('locationsStorage', JSON.stringify(myData));
+} 
+
+function updateMaxEntries(myData, people) {
+    var winner = 0;
+    for( var i=0 ; i<people.length ; i++ ) {
+        var person = people[i];
+        if( myData.locations[person].numberOfEntries > winner ) {
+            winner = myData.locations[person].numberOfEntries;
+        }
+    }
+    myData.maxEntries = winner;
+    localStorage.setItem('locationsStorage', JSON.stringify(myData));
+}
+
+function deleteExcessiveRow(myData) {
+    var rowCount = $('#wuaTable tr').length-1;
+    if( myData.maxEntries !== rowCount ) {
+        $('#wuaTable tr:last').remove();
+    }
 }
