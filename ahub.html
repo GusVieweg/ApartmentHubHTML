@@ -2,13 +2,15 @@
 	<head>
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="quicksand.css">
 		<link rel="stylesheet" type="text/css" href="ahub.css">
 		<script src="ahub.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script> <!-- JQUERY -->
 		<script>
 			window.onload = function() {
-				var dateString = "dates=" + getCurrentDate() + "/" + getCurrentDate() + "&amp;";
-				var iframeString = '<iframe id="gCal" src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=DAY&amp;'+dateString+'height=600&amp;wkst=1&amp;bgcolor=%23EEEEEE&amp;src=<MY CALENDAR>&amp;color=%23333333&amp;ctz=America%2FNew_York" style="border-width:0;margin:0% 5%;border-radius:10px;" width="90%" height="82.5%;" frameborder="0" scrolling="no"></iframe>'
+				var dateString = "dates=" + getCurrentDate() + "/" + getCurrentDate() + "&amp;",
+					iframeString = '<iframe id="gCal" src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=DAY&amp;'+dateString+'height=600&amp;wkst=1&amp;bgcolor=%23EEEEEE&amp;src=ncsu.edu_dgt0if41b0j1vok4j4bqiuu46g%40group.calendar.google.com&amp;color=%235F6B02&amp;src=ncsu.edu_oft0hmrtl6g9bkrap93ed7fn1c%40group.calendar.google.com&amp;color=%23333333&amp;src=ncsu.edu_ld9pqjofrinf8olrr40138qglo%40group.calendar.google.com&amp;color=%232952A3&amp;ctz=America%2FNew_York" style="border-width:0;margin:0% 5%;border-radius:10px;" width="90%" height="80%;" frameborder="0" scrolling="no"></iframe>'
 			    $('#dayCalendarPanel').append(iframeString);
 			};
 		</script>
@@ -65,9 +67,11 @@
 							</tr>
 						</table>
 					</div>
+					<div class="optionButton" id="loginText"><h5 class="text-center"><b>Login<b></h5></div>
 				</div>
 				<div class="col mainBorder" id="dayCalendarPanel">
-					<h1 class="text-center text-white">THE DAY AHEAD:</h1>
+					<h1 class="text-center text-white"><a href="calendar.html">Calendar</a></h1>
+					<hr />
 				</div>
 				<div class="rightNarrowStack">
 					<div class="col mainBorder" id="reminderPanel">
@@ -112,6 +116,7 @@
 							</tr>
 						</table>
 					</div>
+					<div class="optionButton" id="filterText"><h5 class="text-center"><b>Filter<b></h5></div>
 				</div>
 			</div>
 		</div>

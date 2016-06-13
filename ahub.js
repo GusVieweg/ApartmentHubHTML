@@ -55,7 +55,7 @@ function updateClock() {
         dotw = days[now.getDay()];
 
     // set the content of the element with the ID time to the formatted string
-    document.getElementById('datetime').innerHTML = "<h1 class='text-white text-center'>" + [dotw, date, fulltime].join(' - ') + "</h1>";
+    document.getElementById('datetime').innerHTML = "<h3 class='text-white text-center' style='margin: 5% 0% 2% 0%'>" + [dotw, date, fulltime].join(' - ') + "</h3>";
 
     // call this function again in 1000ms
     setTimeout(updateClock, 1000);

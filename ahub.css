@@ -114,11 +114,11 @@ a:link, a:visited, a:hover, a:active {
 }
 
 #dayCalendarPanel {
-	height: 82.5%;
+	height: 87%;
 	width: 45%;
 	float: left;
 	background-color: #FF2C00;
-	margin: 0% 0% 0% 0%;
+	margin: 7px 0% 0% 0%;
 }
 
 #reminderPanel {
@@ -133,4 +133,10 @@ a:link, a:visited, a:hover, a:active {
 	background-color: #FFAF58;
 	border-radius: 20px;
 	margin: 2.5% 0% 2.5% 0%;
+}
+
+.optionButton {
+	background-color: lightgrey;
+	border-radius: 10px;
+	padding: 1% 0px;
 }

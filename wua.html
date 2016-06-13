@@ -3,13 +3,15 @@
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 		<link rel="stylesheet" type="text/css" href="wua.css">
+		<link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="quicksand.css">
 		<script src="wua.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script> <!-- JQUERY -->
 	</head>
 	<body onload="loadWUAPage()">
 		<div class="container-fluid">
 			<div>
-				<h1 class="text-center text-white"><i>Where is everyone?</i></h1>
+				<h1 class="text-center text-white"><b>Where is everyone?</b></h1>
 				<hr />
 			</div>
 			<div class="row" id="tableContainer">
@@ -19,31 +21,6 @@
 						<th class="text-center gus bottomTB" id="gusLocations1"><h3>Gus's Locations</h3></th>
 						<th class="text-center bottomTB upperRight" id="chrisLocations2"><h3>Chris's Locations</h3></th>
 					</tr>
-					<!--<tr>
-						<td class="patty"></td>
-						<td class="gus"></td>
-						<td class="chris"></td>
-					</tr>
-					<tr>
-						<td class="patty"></td>
-						<td class="gus"></td>
-						<td class="chris"></td>
-					</tr>
-					<tr>
-						<td class="patty"></td>
-						<td class="gus"></td>
-						<td class="chris"></td>
-					</tr>
-					<tr>
-						<td class="patty"></td>
-						<td class="gus"></td>
-						<td class="chris"></td>
-					</tr>
-					<tr>
-						<td class="patty"></td>
-						<td class="gus"></td>
-						<td class="chris"></td>
-					</tr>-->
 				</table>
 			</div>
 			<div class="row" id="selectDivToRemove">
@@ -55,11 +32,11 @@
 						<p class="text-center textReturn">Return home</p>
 					</div>
 				</a>
-				<div class="addALocation">
-					<p class="text-center textReturn" onclick="addLocation()">Add a location</p>
+				<div class="addALocation" onclick="addLocation()">
+					<p class="text-center textReturn">Add a location</p>
 				</div>
-				<div class="removeALocation">
-					<p class="text-center textReturn" onclick="removeLocation()">Remove a location</p>
+				<div class="removeALocation" onclick="removeLocation()">
+					<p class="text-center textReturn" >Delete a location</p>
 				</div>
 			</div>
 		</div>
