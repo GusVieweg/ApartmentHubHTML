@@ -38,6 +38,13 @@ function loadAchievements() {
 	}
 }
 
+function login() {
+	var promptMessage = "Please select your name",
+    	entrySubmit = prompt(promptMessage, ""),
+    	promptMessage2 = "Please enter a letter",
+    	letterSubmit = prompt(promptMessage2, "");
+}
+
 function updateClock() {
     var now = new Date(), // current date
     	days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],

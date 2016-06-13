@@ -33,6 +33,16 @@ html, body {
 	border-width: 3px;
 }
 
+#loginBlock {
+	width: 44%;
+	height: 80%;
+	margin-left: 26.9%;
+	margin-top: 5%;
+	background-color: lightgrey;
+	position: fixed;
+	border-radius: 20px;
+}
+
 #wuaPanel {
 	height: 40%;
 	background-color: #FA569B;
@@ -111,6 +121,12 @@ a:link, a:visited, a:hover, a:active {
 
 .completeTask {
 	background-color: #69FF61;
+}
+
+#dialog {
+	width: 100%;
+	height: 100%;
+	background-color: green;
 }
 
 #dayCalendarPanel {

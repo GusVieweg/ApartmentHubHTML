@@ -17,6 +17,16 @@
 	</head>
 	<body onload="updateClock(); loadReminders(); loadAchievements();">
 		<div class="container-fluid">
+			<div id="loginBlock">
+				<form id="loginForm">
+					<input type="radio" name="name" value="patty">
+					<label for="patty">Patrick</label><br>
+					<input type="radio" name="name" value="gus">
+					<label for="gus">Gus</label><br>
+					<input type="radio" name="name" value="chris">
+					<label for="chris">Chris</label>
+				</form>
+			</div>
 			<div class="row">
 				<div class="col-xs-6"><h1 class="text-white text-center"><i>THE 1234 AT A GLANCE</i></h1></div>
 				<div class="col-xs-6 text-white" id="datetime"></div>
