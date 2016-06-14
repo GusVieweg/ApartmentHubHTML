@@ -6,26 +6,56 @@
 		<link rel="stylesheet" type="text/css" href="quicksand.css">
 		<link rel="stylesheet" type="text/css" href="ahub.css">
 		<script src="ahub.js"></script>
+		<script src="login.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script> <!-- JQUERY -->
 		<script>
 			window.onload = function() {
 				var dateString = "dates=" + getCurrentDate() + "/" + getCurrentDate() + "&amp;",
 					iframeString = '<iframe id="gCal" src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=DAY&amp;'+dateString+'height=600&amp;wkst=1&amp;bgcolor=%23EEEEEE&amp;src=ncsu.edu_dgt0if41b0j1vok4j4bqiuu46g%40group.calendar.google.com&amp;color=%235F6B02&amp;src=ncsu.edu_oft0hmrtl6g9bkrap93ed7fn1c%40group.calendar.google.com&amp;color=%23333333&amp;src=ncsu.edu_ld9pqjofrinf8olrr40138qglo%40group.calendar.google.com&amp;color=%232952A3&amp;ctz=America%2FNew_York" style="border-width:0;margin:0% 5%;border-radius:10px;" width="90%" height="80%;" frameborder="0" scrolling="no"></iframe>'
 			    $('#dayCalendarPanel').append(iframeString);
+			    $('#enterYourPassword').hide();
+			    $('#createYourPassword').hide();
+			    $('#loginBlock').hide();
 			};
 		</script>
 	</head>
 	<body onload="updateClock(); loadReminders(); loadAchievements();">
 		<div class="container-fluid">
 			<div id="loginBlock">
-				<form id="loginForm">
-					<input type="radio" name="name" value="patty">
-					<label for="patty">Patrick</label><br>
-					<input type="radio" name="name" value="gus">
-					<label for="gus">Gus</label><br>
-					<input type="radio" name="name" value="chris">
-					<label for="chris">Chris</label>
-				</form>
+				<div class="row" style="margin:8% 0% 8% 0%">
+					<span class="text-center"><h1><b>Select your name</b></h1></span>
+				</div>
+				<div class="row">
+					<span class="col-xs-2"></span>
+					<span class="loginOption col-xs-2 text-center text-white" id="pattyLogin" onclick='selectPerson("patty")'>Patty</span>
+					<span class="col-xs-1"></span>
+					<span class="loginOption col-xs-2 text-center text-white" id="gusLogin">Gus</span>
+					<span class="col-xs-1"></span>
+					<span class="loginOption col-xs-2 text-center text-white" id="chrisLogin">Chris</span>
+					<span class="col-xs-2"></span>
+				</div>
+				<div id="enterYourPassword">
+					<div class="row" style="margin:8% 0% 8% 0%">
+						<span class="text-center"><h1><b>Enter your password</b></h1></span>
+					</div>
+					<div class="row text-center">
+						<form onsubmit>
+							<input type="password" name="myPassword">
+							<input type="submit">
+						</form>
+					</div>
+				</div>
+				<div id="createYourPassword">
+					<div class="row" style="margin:8% 0% 8% 0%">
+						<span class="text-center"><h1><b>Create your password</b></h1></span>
+					</div>
+					<div class="row text-center">
+						<form method="POST" id="passwordForm" onsubmit='validateForm()'>
+							<input type="password" name="password">
+							<input type="submit">
+						</form>
+					</div>
+				</div>
 			</div>
 			<div class="row">
 				<div class="col-xs-6"><h1 class="text-white text-center"><i>THE 1234 AT A GLANCE</i></h1></div>
@@ -77,7 +107,7 @@
 							</tr>
 						</table>
 					</div>
-					<div class="optionButton" id="loginText"><h5 class="text-center"><b>Login<b></h5></div>
+					<div class="optionButton" id="loginText" onclick="showLogin()"><h5 class="text-center"><b>Login<b></h5></div>
 				</div>
 				<div class="col mainBorder" id="dayCalendarPanel">
 					<h1 class="text-center text-white"><a href="calendar.html">Calendar</a></h1>

@@ -82,6 +82,29 @@ a:link, a:visited, a:hover, a:active {
 	color:white;
 }
 
+#loginSelector {
+	margin: 20% 0%;
+}
+
+input[type=password] {padding:5px; border:2px solid #ccc; height:60px; width: 50%; font-size: 20px;
+-webkit-border-radius: 5px;
+    border-radius: 10px;
+    transition:1s;
+}
+input[type=password]:focus {border-color:#333;transition:1s; }
+
+input[type=submit] {padding:0px 15px; background:grey; border:0 none; height: 60px; color:white;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 10px; }
+
+.loginOption {
+	background-color: grey;
+	padding: 20px;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
 .wuaGreyTR {
 	border-bottom: 2px solid white;
 }
@@ -155,4 +178,5 @@ a:link, a:visited, a:hover, a:active {
 	background-color: lightgrey;
 	border-radius: 10px;
 	padding: 1% 0px;
+	cursor: pointer;
 }
