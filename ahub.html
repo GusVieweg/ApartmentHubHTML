@@ -25,7 +25,7 @@
 			    	var person = people[i];
 			    	j++;
 			    	if( myData[person].loggedin == 'yes' ) {
-			    		document.getElementById('logoutTextBold').innerHTML = "Logged in as " + capitalizeFirstLetter(person) + " - Click to Logout";
+			    		document.getElementById('logoutTextBold').innerHTML = "Logged in as " + capitalizeFirstLetter(person) + " - Click to logout";
 			    		$('#logoutText').show();
 			    		j--;
 			    	} else if( j == 3 ){
@@ -55,7 +55,7 @@
 						<span class="text-center"><h1><b>Enter your password</b></h1></span>
 					</div>
 					<div class="row text-center">
-						<form id="enterForm" onsubmit='validateForm("enter")'>
+						<form method="POST" id="enterForm" onsubmit='validateForm("enter")'>
 							<input type="password" name="password">
 							<input type="submit">
 						</form>

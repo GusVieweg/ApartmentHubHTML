@@ -1,5 +1,22 @@
 /* RESET LOCAL STORAGE: {"reminders":{"patty":{"numberOfEntries":0},"gus":{"numberOfEntries":0},"chris":{"numberOfEntries":0}},"maxEntries":0} */
 
+function whoIsLoggedIn() {
+    var myData = JSON.parse(localStorage.getItem('loginInfo')),
+        people = ['patty', 'gus', 'chris'],
+        result = 0;
+    for( var i=0 ; i<3 ; i++ ) {
+        var person = people[i];
+        if( myData[person].loggedin == 'yes' ) {
+            result = person;
+        }
+    }
+    return result;
+}
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 /* 	USAGE:
 	addSomething("name of page","name of division being inserted")*/
 
@@ -8,35 +25,38 @@ function addEntry(entry) {
         entryPods = entry + "Pods",
         entries = entry + "s",
 	    myData = JSON.parse(localStorage.getItem(entryStorage));
+    var person = whoIsLoggedIn();
+    console.log("Person who is logged in: " + person);
 
-	var promptMessage = "Please enter your " + entry;
-    var entrySubmit = prompt(promptMessage, "");
-    var promptMessage2 = "Please enter a letter";
-    var letterSubmit = prompt(promptMessage2, "");
-    var tc = document.getElementById(entryPods);
-    var people = ["patty", "gus", "chris"];
-    var person = letterToPerson(letterSubmit);
-    var tabularData, tabularDataChild;
+    if( person != 0 ) {
+    	var promptMessage = "Please enter your " + entry + ", " + capitalizeFirstLetter(person) + "!";
+        var entrySubmit = prompt(promptMessage, "");
+        var tc = document.getElementById(entryPods);
+        var people = ["patty", "gus", "chris"];
+        var tabularData, tabularDataChild;
 
-    if (entrySubmit != "") {
-        var personPlace = people.indexOf(person);
+        if (entrySubmit != "") {
+            var personPlace = people.indexOf(person);
 
-        var string = entry + myData[entries][person].numberOfEntries;
-        
-    	if( myData.maxEntries === myData[entries][person].numberOfEntries ) {
-            console.log("Number of entries is equal to max entries");
-            myData.maxEntries++;
-        } else {
-            console.log("Number of entries is unequal to max entries")
+            var string = entry + myData[entries][person].numberOfEntries;
+            
+        	if( myData.maxEntries === myData[entries][person].numberOfEntries ) {
+                console.log("Number of entries is equal to max entries");
+                myData.maxEntries++;
+            } else {
+                console.log("Number of entries is unequal to max entries")
+            }
+
+            $('#' + entryPods).append("<div class='"+entry+" vcenter "+person+"'><h3>" + entrySubmit + "</h3></div>");
+
+            myData[entries][person].numberOfEntries++;
+            myData[entries][person][string] = entrySubmit;
+            localStorage.setItem(entryStorage, JSON.stringify(myData));
         }
-
-        $('#' + entryPods).append("<div class='"+entry+" vcenter "+person+"'><h3>" + entrySubmit + "</h3></div>");
-
-        myData[entries][person].numberOfEntries++;
-        myData[entries][person][string] = entrySubmit;
-        localStorage.setItem(entryStorage, JSON.stringify(myData));
+        $('#selectDivToRemove').hide();
+    } else {
+        alert("Please log in to edit " + entries);
     }
-    $('#selectDivToRemove').hide();
 }
 
 function removeEntry(entry) {
