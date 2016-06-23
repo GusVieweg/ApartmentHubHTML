@@ -102,3 +102,40 @@ function getCurrentDate() {
 	}
 	return date.getFullYear()+''+month+''+day;
 }
+
+function curveCorners() {
+	var c = document.getElementsByClassName('incompleteTask');
+	var mult, blockComplete, sum,
+		foundFirstRow, nonvisibles, potentialLoner;
+	console.log(c);
+	for( var i=0 ; i<3 ; i++ ) {
+		mult = i*3;
+		blockComplete = false;
+		foundFirstRow = false;
+		nonvisibles = 0;
+		if( c[mult+2].style.display != 'none' ) {
+			c[mult+2].children[0].className += ' lowerLeft';
+			c[mult+2].children[1].className += ' lowerRight';
+		} else if( c[mult+1].style.display != 'none' ) {
+			c[mult+1].children[0].className += ' lowerLeft';
+			c[mult+1].children[1].className += ' lowerRight';
+		}
+		for( var j=0 ; j<3 ; j++ ) {
+			sum = mult + j;
+			console.log(c[sum].children[1]);
+			if( (c[sum].style.display != 'none')&&(foundFirstRow==false) ) {
+				c[sum].children[0].className += ' upperLeft';
+				c[sum].children[1].className += ' upperRight';
+				potentialLoner = c[sum];
+				foundFirstRow = true;
+			}
+			if( (c[sum].style.display == 'none') ) {
+				nonvisibles++;
+			}
+			if( (nonvisibles == 2)&&(foundFirstRow==true) ) {
+				potentialLoner.children[0].className = 'lonelyBlockLeft';
+				potentialLoner.children[1].className = 'lonelyBlockRight';
+			}
+		}
+	}
+}

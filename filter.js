@@ -25,3 +25,12 @@ function filter() {
 		window.location.reload();
 	}
 }
+
+function defilter() {
+	var myData = JSON.parse(localStorage.getItem('loginInfo'));
+	var person = whoIsLoggedIn();
+	console.log(person + " is logged in ");
+	myData[person].filtered = 'no';
+	localStorage.setItem('loginInfo', JSON.stringify(myData));
+	window.location.reload();
+}
