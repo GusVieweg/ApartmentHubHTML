@@ -117,17 +117,6 @@ function loadEntryPage(entry) {
     updateMaxEntries(myData, people, entry);
 }
 
-function letterToPerson(letter) {
-    var person;
-    switch( letter ) {
-        case 'p': person = "patty"; break;
-        case "g": person = "gus";  break;
-        case "c": person = "chris"; break;
-        default: alert("Person unrecognized"); person = 0;
-    }
-    return person;
-}
-
 function switchJSON(myData, person, startingNum, entry) {
     var entryStorage = entry + "sStorage",
         entryPods = '#' + entry + "Pods",

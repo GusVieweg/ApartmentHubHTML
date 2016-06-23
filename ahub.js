@@ -1,48 +1,66 @@
 // ahub.js
 
-function loadReminders() {
-	console.log("Reminders loaded");
-	var myData = JSON.parse(localStorage.getItem('remindersStorage'));
-	for( var j=0 ; j<3 ; j++ ) {
-		$("#reminder" + j).parent().hide();
-	}
-	$("#noReminders").hide();
-	if( myData.reminders.numberOfEntries > 0 ) {
-		for( j=0 ; j<myData.reminders.numberOfEntries ; j++ ) {
-			document.getElementById("reminder" + j).innerHTML = myData.reminders.reminder[j].descriptionText;
-			console.log(j + ": " + myData.reminders.reminder[j].descriptionText)
-			$("#reminder" + j).parent().show();
-		}
-	}
-	else if( myData.maxEntries == 0 ) {
-		$("#noReminders").show();
-	}
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-function loadAchievements() {
-	console.log("Achievements loaded");
-	var myData = JSON.parse(localStorage.getItem('achievementsStorage'));
-	for( var j=0 ; j<3 ; j++ ) {
-		$("#achievement" + j).parent().hide();
-	}
-	$("#noAchievements").hide();
-	if( myData.achievements.numberOfEntries > 0 ) {
-		for( j=0 ; j<myData.achievements.numberOfEntries ; j++ ) {
-			document.getElementById("achievement" + j).innerHTML = myData.achievements.achievement[j].descriptionText;
-			console.log(j + ": " + myData.achievements.achievement[j].descriptionText)
-			$("#achievement" + j).parent().show();
-		}
-	}
-	else if( myData.maxEntries == 0 ) {
-		$("#noAchievements").show();
-	}
+function whoIsLoggedIn() {
+    var myData = JSON.parse(localStorage.getItem('loginInfo')),
+        people = ['patty', 'gus', 'chris'],
+        result = 0;
+    for( var i=0 ; i<3 ; i++ ) {
+        var person = people[i];
+        if( myData[person].loggedin == 'yes' ) {
+            result = person;
+        }
+    }
+    return result;
 }
 
-function login() {
-	var promptMessage = "Please select your name",
-    	entrySubmit = prompt(promptMessage, ""),
-    	promptMessage2 = "Please enter a letter",
-    	letterSubmit = prompt(promptMessage2, "");
+function loadEntries(entry) {
+	var entryStorage = entry+'sStorage',
+		entryOwner = entry+'Owner',
+		entries = entry+'s',
+		capEntry = capitalizeFirstLetter(entry);
+	var myData = JSON.parse(localStorage.getItem(entryStorage)),
+		loginData = JSON.parse(localStorage.getItem('loginInfo')),
+		people = ['patty', 'gus', 'chris'],
+		potentialPerson = whoIsLoggedIn(),
+		filtered = false;
+	for( var j=0 ; j<3 ; j++ ) {
+		$('#' + entry + j).parent().hide();
+	}
+	$("#no"+capEntry+'s').hide();
+	if( (potentialPerson == 0 )||(loginData[potentialPerson].filtered == 'no') ) {
+		if( myData.maxEntries > 0 ) {
+			for( j=0 ; j<3 ; j++ ) {
+				var person = people[j],
+					entry0 = entry + '0';
+				document.getElementById(entry + j).innerHTML = myData[entries][person][entry0];
+				document.getElementById(entryOwner+j).innerHTML = person.charAt(0).toUpperCase();
+				if( typeof myData[entries][person][entry0] !== 'undefined' ) {
+					$('#' + entry + j).parent().show();
+				}
+			}
+		}
+		else if( myData.maxEntries == 0 ) {
+			$("#no"+capEntry+'s').show();
+		}
+	} else {
+		if( (myData.maxEntries > 0)&&(loginData[potentialPerson].filtered == 'yes')) {
+			for( j=0 ; j<3 ; j++ ) {
+				var person = potentialPerson;
+				var r = entry+j
+				document.getElementById(r).innerHTML = myData[entries][person][r];
+				document.getElementById(entryOwner+j).innerHTML = person.charAt(0).toUpperCase();
+				if( typeof myData[entries][person][r] !== 'undefined' ) {
+					$('#'+r).parent().show();
+				}
+			}
+		} else if( myData.maxEntries == 0 ) {
+			$('#'+capEntry+'s').show();
+		}
+	}
 }
 
 function updateClock() {
@@ -84,4 +102,3 @@ function getCurrentDate() {
 	}
 	return date.getFullYear()+''+month+''+day;
 }
-

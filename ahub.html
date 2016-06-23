@@ -7,11 +7,12 @@
 		<link rel="stylesheet" type="text/css" href="ahub.css">
 		<script src="ahub.js"></script>
 		<script src="login.js"></script>
+		<script src="filter.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script> <!-- JQUERY -->
 		<script>
 			window.onload = function() {
 				var myData = JSON.parse(localStorage.getItem('loginInfo'));
-				var loggedin, j=0,
+				var loggedin, j=0, k=0,
 					people = ['patty', 'gus', 'chris'];
 				var dateString = "dates=" + getCurrentDate() + "/" + getCurrentDate() + "&amp;",
 					iframeString = '<iframe id="gCal" src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=DAY&amp;'+dateString+'height=600&amp;wkst=1&amp;bgcolor=%23EEEEEE&amp;src=ncsu.edu_dgt0if41b0j1vok4j4bqiuu46g%40group.calendar.google.com&amp;color=%235F6B02&amp;src=ncsu.edu_oft0hmrtl6g9bkrap93ed7fn1c%40group.calendar.google.com&amp;color=%23333333&amp;src=ncsu.edu_ld9pqjofrinf8olrr40138qglo%40group.calendar.google.com&amp;color=%232952A3&amp;ctz=America%2FNew_York" style="border-width:0;margin:0% 5%;border-radius:10px;" width="90%" height="80%;" frameborder="0" scrolling="no"></iframe>'
@@ -19,11 +20,11 @@
 			    $('#enterYourPassword').hide();
 			    $('#createYourPassword').hide();
 			    $('#loginBlock').hide();
-			    $('#loginText').hide();
-			    $('#logoutText').hide();
+			    $('#loginText').hide(); $('#logoutText').hide();
+			    $('#filterOnText').hide(); $('#filterOffText').hide();
 			    for( var i=0 ; i<3 ; i++ ) {
 			    	var person = people[i];
-			    	j++;
+			    	j++; k++;
 			    	if( myData[person].loggedin == 'yes' ) {
 			    		document.getElementById('logoutTextBold').innerHTML = "Logged in as " + capitalizeFirstLetter(person) + " - Click to logout";
 			    		$('#logoutText').show();
@@ -31,11 +32,18 @@
 			    	} else if( j == 3 ){
 			    		$('#loginText').show();
 			    	}
+			    	if( myData[person].filtered == 'yes' ) {
+			    		document.getElementById('filterOn').innerHTML = 'Filtered - Click me to defilter';
+			    		$('#filterOnText').show();
+			    		k--;
+			    	} else if( k == 3 ) {
+			    		$('#filterOffText').show();
+			    	}
 			    }
 			};
 		</script>
 	</head>
-	<body onload="updateClock(); loadReminders(); loadAchievements();">
+	<body onload="updateClock(); loadEntries('reminder'); loadEntries('achievement');">
 		<div class="container-fluid">
 			<div id="loginBlock">
 				<div class="row" style="margin:8% 0% 8% 0%">
@@ -110,8 +118,8 @@
 						<hr />
 						<table class="text-center">
 							<tr class="incompleteTask">
-								<td width="15%">P</td>
-								<td width="75%">Take out trash</td>
+								<td width="15%" class="upperLeft">P</td>
+								<td width="75%" class="upperRight">Take out trash</td>
 							</tr>
 							<tr class="incompleteTask">
 								<td width="15%">G</td>
@@ -139,15 +147,15 @@
 								<td width="90%" class="text-center" style="border-radius: 20px;text-size:20px;">No reminders to show.</td>
 							</tr>
 							<tr class="incompleteTask">
-								<td width="15%" class="upperLeft">P</td>
+								<td width="15%" class="upperLeft" id="reminderOwner0"></td>
 								<td width="75%" class="upperRight" id="reminder0"></td>
 							</tr>
 							<tr class="incompleteTask">
-								<td width="15%">G</td>
+								<td width="15%" id="reminderOwner1"></td>
 								<td width="75%" id="reminder1"></td>
 							</tr>
 							<tr class="incompleteTask">
-								<td width="15%" class="lowerRight">C</td>
+								<td width="15%" class="lowerRight" id="reminderOwner2"></td>
 								<td width="75%" class="lowerLeft" id="reminder2"></td>
 							</tr>
 						</table>
@@ -160,20 +168,21 @@
 								<td width="90%" class="text-center" style="border-radius: 20px;text-size:20px;">No achievements to show.<br />Go do something!</td>
 							</tr>
 							<tr class="incompleteTask">
-								<td width="15%" class="upperLeft">P</td>
+								<td width="15%" class="upperLeft" id='achievementOwner0'></td>
 								<td width="75%" class="upperRight" id="achievement0"></td>
 							</tr>
 							<tr class="incompleteTask">
-								<td width="15%">G</td>
+								<td width="15%" id='achievementOwner1'></td>
 								<td width="75%" id="achievement1"></td>
 							</tr>
 							<tr class="incompleteTask">
-								<td width="15%" class="lowerRight">C</td>
+								<td width="15%" class="lowerRight" id='achievementOwner2'></td>
 								<td width="75%" class="lowerLeft" id="achievement2"></td>
 							</tr>
 						</table>
 					</div>
-					<div class="optionButton" id="filterText"><h6 class="text-center"><b>Filter<b></h6></div>
+					<div class="optionButton" id="filterOnText" onclick='filter()'><h6 class="text-center"><b id="filterOn"><b></h6></div>
+					<div class="optionButton" id="filterOffText" onclick='filter()'><h6 class="text-center"><b id="filterOff">Filter<b></h6></div>
 				</div>
 			</div>
 		</div>

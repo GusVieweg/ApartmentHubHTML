@@ -11,10 +11,12 @@ function logout() {
 	for( var i=0 ; i<3 ; i++ ) {
 		var person = people[i];
 		myData[person].loggedin = 'no';
+		myData[person].filtered = 'no';
 	}
 	$('#logoutText').hide();
 	$('#loginText').show();
 	localStorage.setItem('loginInfo', JSON.stringify(myData));
+	window.location.reload();
 }
 
 function retrievePerson() {
