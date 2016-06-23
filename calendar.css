@@ -2,7 +2,7 @@ html, body {
   height: 100%;
   margin: 0; 
   padding: 0;
-  background-color: #282828;
+  background-color: #1C2B3E;
   overflow: auto;
   min-width: 1140px;
 }
@@ -29,7 +29,7 @@ hr {
 	text-decoration: none;
 	color: white;
 	border: solid 2px grey;
-	background-color: grey;
+	background-color: #3F658C;
 	border-radius: 10px;
 	vertical-align: middle;
 	cursor: pointer, hand;

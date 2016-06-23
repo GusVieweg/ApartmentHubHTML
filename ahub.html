@@ -11,35 +11,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script> <!-- JQUERY -->
 		<script>
 			window.onload = function() {
-				var myData = JSON.parse(localStorage.getItem('loginInfo'));
-				var loggedin, j=0, k=0,
-					people = ['patty', 'gus', 'chris'];
-				var dateString = "dates=" + getCurrentDate() + "/" + getCurrentDate() + "&amp;",
-					iframeString = '<iframe id="gCal" src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=DAY&amp;'+dateString+'height=600&amp;wkst=1&amp;bgcolor=%23EEEEEE&amp;src=ncsu.edu_dgt0if41b0j1vok4j4bqiuu46g%40group.calendar.google.com&amp;color=%235F6B02&amp;src=ncsu.edu_oft0hmrtl6g9bkrap93ed7fn1c%40group.calendar.google.com&amp;color=%23333333&amp;src=ncsu.edu_ld9pqjofrinf8olrr40138qglo%40group.calendar.google.com&amp;color=%232952A3&amp;ctz=America%2FNew_York" style="border-width:0;margin:0% 5%;border-radius:10px;" width="90%" height="80%;" frameborder="0" scrolling="no"></iframe>'
-			    $('#dayCalendarPanel').append(iframeString);
-			    $('#enterYourPassword').hide();
-			    $('#createYourPassword').hide();
-			    $('#loginBlock').hide();
-			    $('#loginText').hide(); $('#logoutText').hide();
-			    $('#filterOnText').hide(); $('#filterOffText').hide();
-			    for( var i=0 ; i<3 ; i++ ) {
-			    	var person = people[i];
-			    	j++; k++;
-			    	if( myData[person].loggedin == 'yes' ) {
-			    		document.getElementById('logoutTextBold').innerHTML = "Logged in as " + capitalizeFirstLetter(person) + " - Click to logout";
-			    		$('#logoutText').show();
-			    		j--;
-			    	} else if( j == 3 ){
-			    		$('#loginText').show();
-			    	}
-			    	if( myData[person].filtered == 'yes' ) {
-			    		document.getElementById('filterOn').innerHTML = 'Filtered - Click me to defilter';
-			    		$('#filterOnText').show();
-			    		k--;
-			    	} else if( k == 3 ) {
-			    		$('#filterOffText').show();
-			    	}
-			    }
+				bootup();
 			    updateClock();
 			    loadEntries('reminder');
 			    loadEntries('achievement');
@@ -96,9 +68,9 @@
 						<hr />
 						<table class="text-center" id="wuaTable">
 							<tr class="wuaGreyTR">
-								<td>WHO?</td>
-								<td>WHERE</td>
-								<td>ETA</td>
+								<td class='text-white'>WHO?</td>
+								<td class='text-white'>WHERE</td>
+								<td class='text-white'>ETA</td>
 							</tr>
 							<tr class="wuaGreyTR">
 								<td>PATTY</td>
@@ -135,8 +107,8 @@
 							</tr>
 						</table>
 					</div>
-					<div class="optionButton" id="loginText" onclick="showLogin()"><h6 class="text-center"><b>Login</b></h6></div>
-					<div class="optionButton" id="logoutText" onclick="logout()"><h6 class="text-center"><b id="logoutTextBold"></b></h5></div>
+					<div class="optionButton text-white" id="loginText" onclick="showLogin()"><h6 class="text-center"><b>Login</b></h6></div>
+					<div class="optionButton text-white" id="logoutText" onclick="logout()"><h6 class="text-center"><b id="logoutTextBold"></b></h5></div>
 				</div>
 				<div class="col mainBorder" id="dayCalendarPanel">
 					<h1 class="text-center text-white"><a href="calendar.html">Calendar</a></h1>
@@ -185,8 +157,8 @@
 							</tr>
 						</table>
 					</div>
-					<div class="optionButton" id="filterOnText" onclick='defilter()'><h6 class="text-center"><b id="filterOn"><b></h6></div>
-					<div class="optionButton" id="filterOffText" onclick='filter()'><h6 class="text-center"><b id="filterOff">Filter<b></h6></div>
+					<div class="optionButton text-white" id="filterOnText" onclick='defilter()'><h6 class="text-center"><b id="filterOn"><b></h6></div>
+					<div class="optionButton text-white" id="filterOffText" onclick='filter()'><h6 class="text-center"><b id="filterOff">Filter<b></h6></div>
 				</div>
 			</div>
 		</div>

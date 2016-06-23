@@ -1,9 +1,10 @@
 html, body {
   margin: 0; 
   padding: 0;
-  background-color: #FA569B;
+  background-color: #1C2B3E;
   overflow: auto;
   min-width: 1140px;
+  color: white;
 }
 
 table, tr {
@@ -29,8 +30,8 @@ td {
 	border-bottom: 2px solid white;
 }
 
-.lightPink {
-	background-color: #FCAACD;
+.lightBrown {
+	background-color: #AE7957;
 	border-radius: 10px;
 }
 
@@ -42,7 +43,7 @@ td {
 	text-decoration: none;
 	color: white;
 	border: solid 2px grey;
-	background-color: grey;
+	background-color: #3F658C;
 	border-radius: 10px;
 	position: fixed;
 	bottom: -10%;
@@ -57,7 +58,7 @@ td {
 	text-decoration: none;
 	color: white;
 	border: solid 2px grey;
-	background-color: grey;
+	background-color: #3F658C;
 	border-radius: 10px;
 	position: fixed;
 	bottom: -10%;
@@ -72,7 +73,7 @@ td {
 	text-decoration: none;
 	color: white;
 	border: solid 2px grey;
-	background-color: grey;
+	background-color: #3F658C;
 	border-radius: 10px;
 	position: fixed;
 	bottom: -10%;
@@ -84,7 +85,7 @@ td {
 	height: 20%;
 	margin: 0%;
 	color: white;
-	background-color: #FA569B;
+	background-color: #1C2B3E;
 	position: fixed;
 	bottom: 5%;
 	z-index: 9999;

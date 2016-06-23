@@ -1,7 +1,7 @@
 html, body {
   margin: 0; 
   padding: 0;
-  background-color: #282828;
+  background-color: #1C2B3E;
   overflow: auto;
   min-width: 1140px;
 }
@@ -27,7 +27,7 @@ html, body {
 }
 
 .mainBorder {
-	border-color: #858585;
+	border-color: #D0B6A5;
 	border-radius: 20px;
 	border-style: solid;
 	border-width: 3px;
@@ -38,14 +38,14 @@ html, body {
 	height: 80%;
 	margin-left: 26.9%;
 	margin-top: 5%;
-	background-color: lightgrey;
+	background-color: #D0B6A5;
 	position: fixed;
 	border-radius: 20px;
 }
 
 #wuaPanel {
 	height: 40%;
-	background-color: #FA569B;
+	background-color: #AE7957;
 	border-radius: 20px;
 	margin: 2.5% 0% 2.5% 0%;
 }
@@ -135,7 +135,7 @@ input[type=submit] {padding:0px 15px; background:grey; border:0 none; height: 60
 
 #choresPanel {
 	height: 40%;
-	background-color: #54F590;
+	background-color: #AE7957;
 	border-radius: 20px;
 	margin: 2.5% 0% 2.5% 0%;
 }
@@ -147,7 +147,8 @@ input[type=submit] {padding:0px 15px; background:grey; border:0 none; height: 60
 }
 
 .incompleteTask {
-	background-color: #FF6961;
+	background-color: #A02A0E;
+	color: white;
 }
 
 .completeTask {
@@ -164,26 +165,26 @@ input[type=submit] {padding:0px 15px; background:grey; border:0 none; height: 60
 	height: 87%;
 	width: 45%;
 	float: left;
-	background-color: #FF2C00;
+	background-color: #AE7957;
 	margin: 7px 0% 0% 0%;
 }
 
 #reminderPanel {
 	height: 40%;
-	background-color:#FFAF58;
+	background-color:#AE7957;
 	border-radius: 20px;
 	margin: 2.5% 0% 2.5% 0%;
 }
 
 #achievementsPanel {
 	height: 40%;
-	background-color: #FFAF58;
+	background-color: #AE7957;
 	border-radius: 20px;
 	margin: 2.5% 0% 2.5% 0%;
 }
 
 .optionButton {
-	background-color: lightgrey;
+	background-color: #3F658C;
 	border-radius: 10px;
 	padding: 1% 0px;
 	cursor: pointer;
