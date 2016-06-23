@@ -24,12 +24,14 @@ function addEntry(entry) {
     var entryStorage = entry + "sStorage",
         entryPods = entry + "Pods",
         entries = entry + "s",
-	    myData = JSON.parse(localStorage.getItem(entryStorage));
-    var person = whoIsLoggedIn();
+	    myData = JSON.parse(localStorage.getItem(entryStorage)),
+        person = whoIsLoggedIn(),
+        formalPerson = capitalizeFirstLetter(person);
+    
     console.log("Person who is logged in: " + person);
 
     if( person != 0 ) {
-    	var promptMessage = "Please enter your " + entry + ", " + capitalizeFirstLetter(person) + "!";
+    	var promptMessage = "Please enter your " + entry + ", " + formalPerson + "!";
         var entrySubmit = prompt(promptMessage, "");
         var tc = document.getElementById(entryPods);
         var people = ["patty", "gus", "chris"];
@@ -47,7 +49,11 @@ function addEntry(entry) {
                 console.log("Number of entries is unequal to max entries")
             }
 
-            $('#' + entryPods).append("<div class='"+entry+" vcenter "+person+"'><h3>" + entrySubmit + "</h3></div>");
+            if( entry == 'reminder' ) {
+                $('#' + entryPods).append("<div class='"+entry+" vcenter "+person+"'><h3>"+formalPerson+': '+ entrySubmit + "</h3></div>");
+            } else {
+                $('#' + entryPods).append("<div class='"+entry+" vcenter "+person+"'><h3>"+formalPerson+' '+ entrySubmit + "!</h3></div>");
+            }
 
             myData[entries][person].numberOfEntries++;
             myData[entries][person][string] = entrySubmit;
@@ -66,35 +72,44 @@ function removeEntry(entry) {
         myData = JSON.parse(localStorage.getItem(entryStorage)),
         elements = document.getElementsByClassName(entry),
         toRemoveNum, person, personPlace, varName,
+        personLoggedIn = whoIsLoggedIn(),
         people = ['patty', 'gus', 'chris'];
 
     $("#selectDivToRemove").show();
 
-    for( var i=0, len=elements.length ; i<len ; i++ ) {
-        elements[i].onclick = function(){
-            // Get basic info
-            var classes=$(this).attr("class").split(" "),
-    			person=classes[classes.length-1];
-            personPlace = people.indexOf(person);
+    if( personLoggedIn != 0 ) {
+        for( var i=0, len=elements.length ; i<len ; i++ ) {
+            elements[i].onclick = function(){
+                // Get basic info
+                var classes=$(this).attr("class").split(" "),
+        			person=classes[classes.length-1];
+                personPlace = people.indexOf(person);
 
-            // Get rid of locations on the screen
-            switchColumn($(this));
-            
-            // Get rid of locations in the JSON
-            toRemoveNum = ($(this).index());
-            console.log(toRemoveNum);
-            switchJSON(myData, person, toRemoveNum, entry);
+                if( personLoggedIn == person ) {
+                    // Get rid of locations on the screen
+                    switchColumn($(this));
+                    
+                    // Get rid of locations in the JSON
+                    toRemoveNum = ($(this).index());
+                    console.log(toRemoveNum);
+                    switchJSON(myData, person, toRemoveNum, entry);
 
-            // Update max entries count
-            updateMaxEntries(myData, people, entry);
+                    // Update max entries count
+                    updateMaxEntries(myData, people, entry);
 
-            // Clean up
-            for( var j=0 ; j<len ; j++ ) {
-                elements[j].onclick = null;
+                    // Clean up
+                    for( var j=0 ; j<len ; j++ ) {
+                        elements[j].onclick = null;
+                    }
+                    deleteExcessiveRow(myData, people, entry);
+                } else {
+                    alert('Please login to remove your ' + entries + '.');
+                }
+                $('#selectDivToRemove').hide();
             }
-            deleteExcessiveRow(myData, people, entry);
-            $('#selectDivToRemove').hide();
         }
+    } else {
+        alert("Please log in to edit " + entries);
     }
 }
 
@@ -103,15 +118,37 @@ function loadEntryPage(entry) {
         entryPods = '#' + entry + "Pods",
         entries = entry + "s",
 	    myData = JSON.parse(localStorage.getItem(entryStorage)),
-        people = ["patty", "gus", "chris"];
+        loginData = JSON.parse(localStorage.getItem('loginInfo')),
+        people = ["patty", "gus", "chris"],
+        personLoggedIn = whoIsLoggedIn(),
+        formalPersonLI = capitalizeFirstLetter(personLoggedIn);
 
     $("#selectDivToRemove").hide();
 
-    for( var i=0 ; i<3 ; i++ ) {
-        var person = people[i];
-        for( var j=0 ; j<myData[entries][person].numberOfEntries ; j++ ) {
-        	var entryString = entry + j;
-            $(entryPods).append("<div class='"+entry+" vcenter "+person+"'><h3>"+myData[entries][person][entryString]+"</h3></div>");
+    if( loginData[personLoggedIn].filtered == 'yes' ) {
+        for( var j=0 ; j<myData[entries][personLoggedIn].numberOfEntries ; j++ ) {
+            var entryString = entry + j;
+            
+            if( entry == 'reminder' ) {
+                $(entryPods).append("<div class='"+entry+" vcenter "+personLoggedIn+"'><h3>"+formalPersonLI+': '+ myData[entries][personLoggedIn][entryString] + "</h3></div>");
+            } else {
+                $(entryPods).append("<div class='"+entry+" vcenter "+personLoggedIn+"'><h3>"+formalPersonLI+' '+ myData[entries][personLoggedIn][entryString] + "!</h3></div>");
+            }
+
+        }
+    } else {
+        for( var i=0 ; i<3 ; i++ ) {
+            var person = people[i];
+            var formalLayman = capitalizeFirstLetter(person);
+            for( var j=0 ; j<myData[entries][person].numberOfEntries ; j++ ) {
+                var entryString = entry + j;
+                if( entry == 'reminder' ) {
+                    $(entryPods).append("<div class='"+entry+" vcenter "+person+"'><h3>"+formalLayman+': '+ myData[entries][person][entryString] + "</h3></div>");
+                } else {
+                    $(entryPods).append("<div class='"+entry+" vcenter "+person+"'><h3>"+formalLayman+' '+ myData[entries][person][entryString] + "!</h3></div>");
+                }
+
+            }
         }
     }
     updateMaxEntries(myData, people, entry);
@@ -127,6 +164,7 @@ function switchJSON(myData, person, startingNum, entry) {
         var toReplace = entry + j,
             replaceWith = entry + (j+1),
             replaceString;
+            console.log(myData, replaceWith);
             console.log(myData[entries][person][replaceWith]);
         if( typeof myData[entries][person][replaceWith] !== "undefined" ) {
             replaceString = myData[entries][person][replaceWith];

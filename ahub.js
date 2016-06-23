@@ -57,8 +57,9 @@ function loadEntries(entry) {
 					$('#'+r).parent().show();
 				}
 			}
-		} else if( myData.maxEntries == 0 ) {
-			$('#'+capEntry+'s').show();
+			if( myData[entries][person].numberOfEntries == 0 ) {
+				$('#no'+capEntry+'s').show();
+			}
 		}
 	}
 }
