@@ -1,9 +1,15 @@
 html, body {
   margin: 0; 
   padding: 0;
-  background-color: #FFAF58;
+  background-color: #1C2B3E;
   overflow: auto;
   min-width: 1140px;
+  color: white;
+}
+
+#choreOptionTable {
+	border-spacing: 10px;
+	border-collapse: separate;
 }
 
 table, tr {
@@ -12,38 +18,114 @@ table, tr {
 }
 
 td {
-	padding: 25px;
-	font-weight: bold;
 	text-align: center;
 }
 
-.achievement {
-	width: 90%;
-	height: 10%;
-	background-color: white;
-	color: black;
-	margin: 0% 5% 1% 5%;
-	padding: 0% 5%;
+.task {
+	border-right: 2px solid white;
+}
+
+.freq {
+	border-right: 2px solid white;
+}
+
+.bottomTB {
+	border-bottom: 2px solid white;
+}
+
+.lightBrown {
+	background-color: #AE7957;
 	border-radius: 10px;
 }
 
-.achievementText {
-	padding: 0% 10%;
+#choreCreation {
+	width: 44%;
+	margin-left: 26.9%;
+	margin-top: 5%;
+	background-color: #D0B6A5;
+	position: fixed;
+	border-radius: 20px;
 }
 
+#submitButton {
+	width: 80%;
+	background-color: grey;
+	border: none;
+	border-radius: 10px;
+	padding: 10px;
+	cursor: pointer;
+}
+
+.choreOption {
+	background-color: grey;
+	border-radius: 10px;
+	padding: 10px;
+	margin: 10px;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+input[type=text] {padding:5px; border:2px solid #ccc; height:60px; width: 50%; font-size: 20px; color:black;
+-webkit-border-radius: 5px;
+    border-radius: 10px;
+    transition:1s;
+}
+input[type=text]:focus {border-color:#333;transition:1s; }
+
 .return {
-	width: 15%;
+	width: 10%;
 	height: 10%;
 	margin: 0% 0% 10% 25%;
 	float: left;
 	text-decoration: none;
 	color: white;
 	border: solid 2px grey;
-	background-color: grey;
+	background-color: #3F658C;
 	border-radius: 10px;
 	position: fixed;
 	bottom: -10%;
 	vertical-align: middle;
+}
+
+.addALocation {
+	width: 10%;
+	height: 10%;
+	margin: 0% 0% 10% 45%;
+	float: left;
+	text-decoration: none;
+	color: white;
+	border: solid 2px grey;
+	background-color: #3F658C;
+	border-radius: 10px;
+	position: fixed;
+	bottom: -10%;
+	vertical-align: middle;
+}
+
+.removeALocation {
+	width: 10%;
+	height: 10%;
+	margin: 0% 0% 10% 65%;
+	float: left;
+	text-decoration: none;
+	color: white;
+	border: solid 2px grey;
+	background-color: #3F658C;
+	border-radius: 10px;
+	position: fixed;
+	bottom: -10%;
+	vertical-align: middle;
+}
+
+#selectDivToRemove {
+	width: 100%;
+	height: 20%;
+	margin: 0%;
+	color: white;
+	background-color: #1C2B3E;
+	position: fixed;
+	bottom: 5%;
+	z-index: 9999;
 }
 
 .textReturn {
@@ -53,10 +135,4 @@ td {
 	transform: translate(-50%, -50%);
 	text-decoration: none;
 	color: white;
-}
-
-.vcenter {
-    display: inline-block;
-    vertical-align: middle;
-    float: none;
 }

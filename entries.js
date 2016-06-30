@@ -14,7 +14,7 @@ function whoIsLoggedIn() {
 }
 
 function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+    return String(string).charAt(0).toUpperCase() + String(string).slice(1);
 }
 
 /* 	USAGE:
@@ -125,12 +125,12 @@ function loadEntryPage(entry) {
 
     $("#selectDivToRemove").hide();
 
-    if( loginData[personLoggedIn].filtered == 'yes' ) {
+    if( (personLoggedIn != 0)&&(loginData[personLoggedIn].filtered == 'yes') ) {
         for( var j=0 ; j<myData[entries][personLoggedIn].numberOfEntries ; j++ ) {
             var entryString = entry + j;
             
             if( entry == 'reminder' ) {
-                $(entryPods).append("<div class='"+entry+" vcenter "+personLoggedIn+"'><h3>"+formalPersonLI+': '+ myData[entries][personLoggedIn][entryString] + "</h3></div>");
+                $(entryPods).append("<div class='"+entry+" vcenter "+personLoggedIn+"'><h3>"+formalPersonLI+' - '+ myData[entries][personLoggedIn][entryString] + "</h3></div>");
             } else {
                 $(entryPods).append("<div class='"+entry+" vcenter "+personLoggedIn+"'><h3>"+formalPersonLI+' '+ myData[entries][personLoggedIn][entryString] + "!</h3></div>");
             }
@@ -143,7 +143,7 @@ function loadEntryPage(entry) {
             for( var j=0 ; j<myData[entries][person].numberOfEntries ; j++ ) {
                 var entryString = entry + j;
                 if( entry == 'reminder' ) {
-                    $(entryPods).append("<div class='"+entry+" vcenter "+person+"'><h3>"+formalLayman+': '+ myData[entries][person][entryString] + "</h3></div>");
+                    $(entryPods).append("<div class='"+entry+" vcenter "+person+"'><h3>"+formalLayman+' - '+ myData[entries][person][entryString] + "</h3></div>");
                 } else {
                     $(entryPods).append("<div class='"+entry+" vcenter "+person+"'><h3>"+formalLayman+' '+ myData[entries][person][entryString] + "!</h3></div>");
                 }

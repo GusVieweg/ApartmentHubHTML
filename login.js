@@ -90,5 +90,5 @@ function validateForm(action) {
 }
 
 function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+    return String(string).charAt(0).toUpperCase() + String(string).slice(1);
 }
