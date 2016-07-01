@@ -17,6 +17,59 @@ function whoIsLoggedIn() {
     return result;
 }
 
+function loadChores() {
+	var myData = JSON.parse(localStorage.getItem('choresStorage')),
+		loginData = JSON.parse(localStorage.getItem('loginInfo')),
+		potentialPerson = whoIsLoggedIn(),
+		filtered = false,
+		people = ['patty','gus','chris'],
+		unfinishedChores = 0;
+	for( var j=0 ; j<3 ; j++ ) {
+		$('#chore'+j).parent().hide();
+	}
+	$('#noChores').hide();
+	if( (potentialPerson == 0 )||(loginData[potentialPerson].filtered == 'no') ) {
+		console.log('Entered first if')
+		if( myData.chores.length > 0 ) {
+			for( j=0 ; j<myData.chores.length ; j++ ) {
+				if( myData.chores[j].completed == 'no' ) {
+					console.log('Chore incomplete:');
+					console.log(myData.chores[j]);
+					document.getElementById('chore'+unfinishedChores).innerHTML = myData.chores[j].task;
+					document.getElementById('choreOwner'+unfinishedChores).innerHTML = String(myData.chores[j].assignedTo).charAt(0).toUpperCase();
+					$('#chore'+unfinishedChores).parent().show();
+					unfinishedChores++;
+					if( unfinishedChores == 3 ) {
+						break;
+					}
+				}
+			}
+			if( unfinishedChores == 0 ) {
+				$('#noChores').show();
+			}
+		}
+	} else {
+		console.log('Entered second if');
+		if( (myData.chores.length > 0)&&(loginData[potentialPerson].filtered == 'yes')) {
+			for( j=0 ; j<myData.chores.length ; j++ ) {
+				var person = potentialPerson;
+				var r = 'chore'+unfinishedChores;
+				if( (myData.chores[j].assignedTo == person)&&(myData.chores[j].completed == 'no')) {
+					console.log(myData.chores[j]);
+					document.getElementById(r).innerHTML = myData.chores[j].task;
+					document.getElementById('choreOwner'+unfinishedChores).innerHTML = person.charAt(0).toUpperCase();
+					unfinishedChores++;
+					if( typeof myData[entries][person][r] !== 'undefined' ) {
+						$('#'+r).parent().show();
+					}
+				} else if( unfinishedChores == 0 ) {
+					$('#noChores').show();
+				}
+			}
+		}
+	}
+}
+
 function loadEntries(entry) {
 	var entryStorage = entry+'sStorage',
 		entryOwner = entry+'Owner',
@@ -166,6 +219,19 @@ function bootup() {
     	if( myData[person].filtered == 'yes' ) {
     		document.getElementById('filterOn').innerHTML = 'Filtered - Click me to defilter';
     		$('#filterOnText').show();
+    		switch( person ) {
+    			case 'gus':
+    				iframeString = '<iframe id="gCal" src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=DAY&amp;'+dateString+'height=600&amp;wkst=1&amp;bgcolor=%23EEEEEE&amp;src=ncsu.edu_oft0hmrtl6g9bkrap93ed7fn1c%40group.calendar.google.com&amp;color=%23333333&amp;ctz=America%2FNew_York" style="border-width:0;margin:0% 5%;border-radius:10px;" width="90%" height="80%;" frameborder="0" scrolling="no"></iframe>'
+    				break;
+    			case 'patty':
+    				iframeString = '<iframe id="gCal" src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=DAY&amp;'+dateString+'height=600&amp;wkst=1&amp;bgcolor=%23EEEEEE&amp;src=ncsu.edu_ld9pqjofrinf8olrr40138qglo%40group.calendar.google.com&amp;color=%232952A3&amp;ctz=America%2FNew_York" style="border-width:0;margin:0% 5%;border-radius:10px;" width="90%" height="80%;" frameborder="0" scrolling="no"></iframe>'
+    				break;
+    			case 'chris':
+    				iframeString = '<iframe id="gCal" src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=DAY&amp;'+dateString+'height=600&amp;wkst=1&amp;bgcolor=%23EEEEEE&amp;src=ncsu.edu_dgt0if41b0j1vok4j4bqiuu46g%40group.calendar.google.com&amp;color=%235F6B02&amp;ctz=America%2FNew_York" style="border-width:0;margin:0% 5%;border-radius:10px;" width="90%" height="80%;" frameborder="0" scrolling="no"></iframe>'
+    				break;
+    			default:
+    				iframeString = '<iframe id="gCal" src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=DAY&amp;'+dateString+'height=600&amp;wkst=1&amp;bgcolor=%23EEEEEE&amp;src=ncsu.edu_dgt0if41b0j1vok4j4bqiuu46g%40group.calendar.google.com&amp;color=%235F6B02&amp;src=ncsu.edu_oft0hmrtl6g9bkrap93ed7fn1c%40group.calendar.google.com&amp;color=%23333333&amp;src=ncsu.edu_ld9pqjofrinf8olrr40138qglo%40group.calendar.google.com&amp;color=%232952A3&amp;ctz=America%2FNew_York" style="border-width:0;margin:0% 5%;border-radius:10px;" width="90%" height="80%;" frameborder="0" scrolling="no"></iframe>'
+    		}
     		k--;
     	} else if( k == 3 ) {
     		$('#filterOffText').show();

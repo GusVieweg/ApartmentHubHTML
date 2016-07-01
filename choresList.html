@@ -53,12 +53,13 @@
 					<tr>
 						<th class="text-center task bottomTB upperLeft" id="pattyLocations0"><h3>Chore</h3></th>
 						<th class="text-center freq bottomTB" id="gusLocations1"><h3>Frequency</h3></th>
-						<th class="text-center bottomTB upperRight" id="chrisLocations2"><h3>Last Completed By</h3></th>
+						<th class="text-center assignedTo bottomTB" id="chrisLocations2"><h3>Assigned To</h3></th>
+						<th class='text-center completed bottomTB upperRight'><h3>Completed?</h3></th>
 					</tr>
 				</table>
 			</div>
 			<div class="row" id="selectDivToRemove">
-				<h1 class="text-center">Select the chore you wish to remove.</h1>
+				<h1 class="text-center" id='selectDivToRemoveText'>Select the chore you wish to remove.</h1>
 			</div>
 			<div class="row">
 				<a href="ahub.html">
@@ -66,6 +67,9 @@
 						<p class="text-center textReturn">Return home</p>
 					</div>
 				</a>
+				<div class="completeChore" onclick="completeChore()">
+					<p class="text-center textReturn">Complete a chore</p>
+				</div>
 				<div class="addChore" onclick="addChore()">
 					<p class="text-center textReturn">Add a chore</p>
 				</div>

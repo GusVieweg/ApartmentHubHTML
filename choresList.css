@@ -29,6 +29,10 @@ td {
 	border-right: 2px solid white;
 }
 
+.assignedTo {
+	border-right: 2px solid white;
+}
+
 .bottomTB {
 	border-bottom: 2px solid white;
 }
@@ -75,7 +79,7 @@ input[type=text]:focus {border-color:#333;transition:1s; }
 .return {
 	width: 10%;
 	height: 10%;
-	margin: 0% 0% 10% 25%;
+	margin: 0% 0% 10% 15%;
 	float: left;
 	text-decoration: none;
 	color: white;
@@ -90,7 +94,7 @@ input[type=text]:focus {border-color:#333;transition:1s; }
 .addChore {
 	width: 10%;
 	height: 10%;
-	margin: 0% 0% 10% 45%;
+	margin: 0% 0% 10% 55%;
 	float: left;
 	text-decoration: none;
 	color: white;
@@ -106,12 +110,28 @@ input[type=text]:focus {border-color:#333;transition:1s; }
 .removeChore {
 	width: 10%;
 	height: 10%;
-	margin: 0% 0% 10% 65%;
+	margin: 0% 0% 10% 75%;
 	float: left;
 	text-decoration: none;
 	color: white;
 	border: solid 2px grey;
 	background-color: #A02A0E;
+	border-radius: 10px;
+	position: fixed;
+	bottom: -10%;
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+.completeChore {
+	width: 10%;
+	height: 10%;
+	margin: 0% 0% 10% 35%;
+	float: left;
+	text-decoration: none;
+	color: white;
+	border: solid 2px grey;
+	background-color: #3F658C;
 	border-radius: 10px;
 	position: fixed;
 	bottom: -10%;

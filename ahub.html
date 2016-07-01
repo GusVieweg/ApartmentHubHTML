@@ -15,6 +15,7 @@
 			    updateClock();
 			    loadEntries('reminder');
 			    loadEntries('achievement');
+			    loadChores();
 			    curveCorners();
 			};
 		</script>
@@ -93,17 +94,20 @@
 						<h3 class="text-center text-white"><a href="choresList.html">Chores List</a></h3>
 						<hr />
 						<table class="text-center">
-							<tr class="incompleteTask">
-								<td width="15%" class=>P</td>
-								<td width="75%" class=>Take out trash</td>
+							<tr id="noChores">
+								<td width="90%" class="text-center" style="border-radius: 20px;text-size:20px;">All chores completed!<br />Nice job!</td>
 							</tr>
 							<tr class="incompleteTask">
-								<td width="15%">G</td>
-								<td width="75%">Make that l33t dinner</td>
+								<td width="15%" id="choreOwner0"></td>
+								<td width="75%" id="chore0"></td>
 							</tr>
 							<tr class="incompleteTask">
-								<td width="15%">C</td>
-								<td width="75%">Open the door for guests</td>
+								<td width="15%" id="choreOwner1"></td>
+								<td width="75%" id="chore1"></td>
+							</tr>
+							<tr class="incompleteTask">
+								<td width="15%" id="choreOwner2"></td>
+								<td width="75%" id="chore2"></td>
 							</tr>
 						</table>
 					</div>
