@@ -87,7 +87,7 @@ input[type=text]:focus {border-color:#333;transition:1s; }
 	vertical-align: middle;
 }
 
-.addALocation {
+.addChore {
 	width: 10%;
 	height: 10%;
 	margin: 0% 0% 10% 45%;
@@ -100,9 +100,10 @@ input[type=text]:focus {border-color:#333;transition:1s; }
 	position: fixed;
 	bottom: -10%;
 	vertical-align: middle;
+	cursor: pointer;
 }
 
-.removeALocation {
+.removeChore {
 	width: 10%;
 	height: 10%;
 	margin: 0% 0% 10% 65%;
@@ -110,11 +111,12 @@ input[type=text]:focus {border-color:#333;transition:1s; }
 	text-decoration: none;
 	color: white;
 	border: solid 2px grey;
-	background-color: #3F658C;
+	background-color: #A02A0E;
 	border-radius: 10px;
 	position: fixed;
 	bottom: -10%;
 	vertical-align: middle;
+	cursor: pointer;
 }
 
 #selectDivToRemove {
