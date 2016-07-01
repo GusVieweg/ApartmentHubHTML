@@ -12,25 +12,35 @@
 	<body onload="loadEntryPage('achievement')">
 		<div class="container-fluid">
 			<div id="achievementsList">
-				<div>
-					<h1 class="text-center text-white"><i>Achievements</i></h1>
-					<hr />
+				<div class="row">
+					<div class='col-md-1'></div>
+					<div class='col-md-4'>
+						<h1 class="text-white text-center"><i>Reminders</i></h1>
+					</div>
+					<div class='col-md-2'>
+						<a href="ahub.html">
+							<div class='return'>
+								<p class="text-center textReturn">Return home</p>
+							</div>
+						</a>
+					</div>
+					<div class='col-md-2'>
+						<div class="addAnAchievement" onclick="addEntry('achievement')">
+							<p class="text-center textReturn">Add a reminder</p>
+						</div>
+					</div>
+					<div class='col-md-2'>
+						<div class="deleteAnAchievement" onclick="removeEntry('achievement')">
+							<p class="text-center textReturn">Delete a reminder</p>
+						</div>
+					</div>
+					<div class='col-md-1'></div>
 				</div>
+				<hr />
 				<div id="achievementPods"></div>
 			</div>
 			<div id="selectDivToRemove">
 				<h1 class="text-center">Select achievement to remove</h1>
-			</div>
-			<a href="ahub.html">
-				<div class="return">
-					<p class="text-center textReturn">Return home</p>
-				</div>
-			</a>
-			<div class="addAnAchievement" onclick="addEntry('achievement')">
-				<p class="text-center textReturn">Add an achievement</p>
-			</div>
-			<div class="deleteAnAchievement" onclick="removeEntry('achievement')">
-				<p class="text-center textReturn">Delete an achievement</p>
 			</div>
 		</div>
 	</body>

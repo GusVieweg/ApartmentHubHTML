@@ -50,7 +50,7 @@ function addEntry(entry) {
             }
 
             if( entry == 'reminder' ) {
-                $('#' + entryPods).append("<div class='"+entry+" vcenter "+person+"'><h3>"+formalPerson+': '+ entrySubmit + "</h3></div>");
+                $('#' + entryPods).append("<div class='"+entry+" vcenter "+person+"'><h3>"+formalPerson+' - '+ entrySubmit + "</h3></div>");
             } else {
                 $('#' + entryPods).append("<div class='"+entry+" vcenter "+person+"'><h3>"+formalPerson+' '+ entrySubmit + "!</h3></div>");
             }

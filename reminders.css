@@ -26,6 +26,7 @@ td {
 	margin: 0% 5% 1% 5%;
 	padding: 0% 5%;
 	border-radius: 10px;
+	position: relative;
 }
 
 .reminderText {
@@ -37,49 +38,43 @@ td {
 }
 
 .addAReminder {
-	width: 10%;
+	width: 80%;
 	height: 10%;
-	margin: 0% 0% 10% 45%;
-	float: left;
+	margin-top: 5%;
+	margin-left: 10%;
 	text-decoration: none;
 	color: white;
 	border: solid 2px grey;
 	background-color: #3F658C;
 	border-radius: 10px;
-	position: fixed;
-	bottom: -10%;
 	vertical-align: middle;
-	cursor: pointer, hand;
+	cursor: pointer;
 }
 
 .deleteAReminder {
-	width: 10%;
+	width: 80%;
 	height: 10%;
-	margin: 0% 0% 10% 65%;
-	float: left;
+	margin-top: 5%;
+	margin-left: 10%;
 	text-decoration: none;
 	color: white;
 	border: solid 2px grey;
-	background-color: #3F658C;
+	background-color: #A02A0E;
 	border-radius: 10px;
-	position: fixed;
-	bottom: -10%;
 	vertical-align: middle;
-	cursor: pointer, hand;
+	cursor: pointer;
 }
 
 .return {
-	width: 10%;
+	width: 80%;
 	height: 10%;
-	margin: 0% 0% 10% 25%;
-	float: left;
+	margin-top: 5%;
+	margin-left: 10%;
 	text-decoration: none;
 	color: white;
 	border: solid 2px grey;
 	background-color: #3F658C;
 	border-radius: 10px;
-	position: fixed;
-	bottom: -10%;
 	vertical-align: middle;
 	cursor: pointer, hand;
 }
@@ -107,7 +102,7 @@ td {
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	transform: translate(-50%, -50%);
+	transform: translate(-50%, -35%);
 	text-decoration: none;
 	color: white;
 }
