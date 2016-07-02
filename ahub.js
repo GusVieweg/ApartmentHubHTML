@@ -29,12 +29,12 @@ function loadChores() {
 	}
 	$('#noChores').hide();
 	if( (potentialPerson == 0 )||(loginData[potentialPerson].filtered == 'no') ) {
-		console.log('Entered first if')
+		// console.log('Entered first if')
 		if( myData.chores.length > 0 ) {
 			for( j=0 ; j<myData.chores.length ; j++ ) {
 				if( myData.chores[j].completed == 'no' ) {
-					console.log('Chore incomplete:');
-					console.log(myData.chores[j]);
+					// console.log('Chore incomplete:');
+					// console.log(myData.chores[j]);
 					document.getElementById('chore'+unfinishedChores).innerHTML = myData.chores[j].task;
 					document.getElementById('choreOwner'+unfinishedChores).innerHTML = String(myData.chores[j].assignedTo).charAt(0).toUpperCase();
 					$('#chore'+unfinishedChores).parent().show();
@@ -49,13 +49,13 @@ function loadChores() {
 			}
 		}
 	} else {
-		console.log('Entered second if');
+		// console.log('Entered second if');
 		if( (myData.chores.length > 0)&&(loginData[potentialPerson].filtered == 'yes')) {
 			for( j=0 ; j<myData.chores.length ; j++ ) {
 				var person = potentialPerson;
 				var r = 'chore'+unfinishedChores;
 				if( (myData.chores[j].assignedTo == person)&&(myData.chores[j].completed == 'no')) {
-					console.log(myData.chores[j]);
+					// console.log(myData.chores[j]);
 					document.getElementById(r).innerHTML = myData.chores[j].task;
 					document.getElementById('choreOwner'+unfinishedChores).innerHTML = person.charAt(0).toUpperCase();
 					unfinishedChores++;
@@ -121,7 +121,7 @@ function updateClock() {
     var now = new Date(), // current date
     	days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
         months = ['January', 'February', 'March', 'April', 'May', 'June',
-        		  'July', 'August', 'September', 'October', 'Novebmer', 'December'], // you get the idea
+        		  'July', 'August', 'September', 'October', 'November', 'December'], // you get the idea
         hours = now.getHours() > 12 ? (now.getHours()-12) : now.getHours(),
         minutes = now.getMinutes() > 10 ? now.getMinutes() : ('0' + now.getMinutes());
         time = hours + ':' + minutes, // again, you get the idea
@@ -138,6 +138,53 @@ function updateClock() {
 
     // call this function again in 1000ms
     setTimeout(updateClock, 1000);
+}
+
+function updateChoreTimes() {
+	console.log('updateChoreTimes called');
+	var myData = JSON.parse(localStorage.getItem('choresStorage')),
+		choreInterval, choreSecs, lastDone, endMark, hasBeenCompleted,
+		people = ['patty','gus','chris'],
+		d = new Date(),
+        seconds = d.getTime() / 1000;
+
+	for( var i=0 ; i<myData.chores.length ; i++ ) {
+		randomRoomie = people[Math.floor(Math.random() * people.length)];
+		choreInterval = myData.chores[i].frequency;
+		console.log(choreInterval);
+		choreSecs = wordsToSeconds(choreInterval);
+		lastDone = myData.chores[i].lastDone;
+		endMark = lastDone + choreSecs;
+		hasBeenCompleted = myData.chores[i].completed;
+		if( seconds >= endMark ) {
+			console.log('Seconds is greater than end mark');
+			if( hasBeenCompleted == 'yes' ) {
+				console.log('Has been completed, updating task');
+				myData.chores[i].completed = 'no';
+				myData.chores[i].assignedTo = randomRoomie;
+				myData.chores[i].lastDone = seconds;
+			} else {
+				myData.chores[i].lastDone = seconds;
+			}
+		}
+	}
+	localStorage.setItem('choresStorage', JSON.stringify(myData));
+	setTimeout(updateChoreTimes, 60000);
+}
+
+function wordsToSeconds(words) {
+	var count;
+	switch( words ) {
+		case 'Minutely': console.log('Called minutely'); count = 60; break;
+		case 'Daily': count = 86400; break;
+		case 'Twice a week': count = 302400; break;
+		case 'Weekly': count = 604800; break;
+		case 'Biweekly': count = 1209600; break;
+		case 'Monthly': count = 2592000; break;
+		case 'Bimonthly': count = 5184000; break;
+		default: console.log('default case'); count = 60;
+	}
+	return count;
 }
 
 function getCurrentDate() {
@@ -161,7 +208,7 @@ function curveCorners() {
 	var c = document.getElementsByClassName('incompleteTask');
 	var mult, blockComplete, sum,
 		foundFirstRow, nonvisibles, potentialLoner;
-	console.log(c);
+	// console.log(c);
 	for( var i=0 ; i<3 ; i++ ) {
 		mult = i*3;
 		blockComplete = false;
@@ -176,7 +223,7 @@ function curveCorners() {
 		}
 		for( var j=0 ; j<3 ; j++ ) {
 			sum = mult + j;
-			console.log(c[sum].children[1]);
+			// console.log(c[sum].children[1]);
 			if( (c[sum].style.display != 'none')&&(foundFirstRow==false) ) {
 				c[sum].children[0].className += ' upperLeft';
 				c[sum].children[1].className += ' upperRight';

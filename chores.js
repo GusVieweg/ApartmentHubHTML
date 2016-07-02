@@ -1,5 +1,5 @@
 // chores.js
-// RESET STORAGE: {"chores":[{"task":"Take out the trash","frequency":"twice a week","assignedTo":"gus","completed":"yes"},{"task":"Wash dishes","frequency":"daily","assignedTo":"chris","completed":"no"}]}
+// RESET STORAGE: {"chores":[{"task":"Take out the trash","frequency":"twice a week","assignedTo":"gus","completed":"yes","lastDone":1467421320},{"task":"Wash dishes","frequency":"daily","assignedTo":"chris","completed":"no","lastDone":1467421320}]}
 
 function whoIsLoggedIn() {
     var myData = JSON.parse(localStorage.getItem('loginInfo')),
@@ -22,7 +22,7 @@ function addChore() {
 	var person = whoIsLoggedIn();
 	if( person != 0 ) {
 		$('#choreCreation').show();
-		console.log('showing chore creation');
+		// console.log('showing chore creation');
 	} else {
 		alert('Please log in to add a new chore.');
 	}
@@ -79,13 +79,16 @@ function submitChore() {
 		randomRoomie = people[Math.floor(Math.random() * people.length)],
 		taskName = document.forms["choreForm"]["choreName"].value,
 		newEntrySpot = myData.chores.length;
+        d = new Date(),
+        seconds = d.getTime() / 1000;
 
 	if( person != 0 ) {
 		myData.chores[newEntrySpot] = {
 			task: taskName,
 			frequency: frequencySelected,
 			assignedTo: randomRoomie,
-            completed: 'no'
+            completed: 'no',
+            lastDone: seconds
 		}
 		$('#choreTable tbody:last').append('<tr><td class="task"><h4>'+capitalizeFirstLetter(taskName)
         								   +'</h4></td><td class="freq"><h4>'
@@ -119,6 +122,7 @@ function removeChore() {
             for( var j=0 ; j<len ; j++ ) {
                 elements[j].onclick = null;
             }
+            deleteExcessiveRow(myData);
             $('#selectDivToRemove').hide();
         }
     }
@@ -168,10 +172,10 @@ function switchJSON(myData, startingNum) {
             replaceWith = (j+1),
             replaceString = myData.chores[j+1];
         if( j != (myData.chores.length-1) ) {
-            console.log("Replacing " + myData.chores[toReplace] + " with " + myData.chores[replaceWith]);
+            // console.log("Replacing " + myData.chores[toReplace] + " with " + myData.chores[replaceWith]);
             myData.chores[toReplace] = replaceString;
         } else {
-            console.log("Deleting JSON");
+            // console.log("Deleting JSON");
             // using 'delete' here (a la wua.js) would leave 'null' in the JSON
             myData.chores.splice(j,1);
         }
@@ -192,5 +196,12 @@ function selectFrequency(clickedItem) {
 	if(!alreadySelected) {
 		$(clickedItem).css('background-color', 'black');
 	}
-	console.log(clickedItem.innerHTML);
+	// console.log(clickedItem.innerHTML);
+}
+
+function deleteExcessiveRow(myData) {
+    var rowCount = $('#choreTable tr').length-1;
+    if( myData.maxEntries !== rowCount ) {
+        $('#choreTable tr:last').remove();
+    }
 }
