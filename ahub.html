@@ -17,6 +17,7 @@
 			    loadEntries('reminder');
 			    loadEntries('achievement');
 			    loadChores();
+			    loadGuestbook();
 			    curveCorners();
 			};
 		</script>
@@ -65,29 +66,24 @@
 			</div>
 			<div class="row">
 				<div class="leftNarrowStack">
-					<div class="mainBorder" id="wuaPanel">
-						<h3 class="text-center text-white"><a href="wua.html">Guestbook</a></h3>
+					<div class="mainBorder" id="guestbookPanel">
+						<h3 class="text-center text-white"><a href="guestbook.html">Guestbook</a></h3>
 						<hr />
-						<table class="text-center" id="wuaTable">
-							<tr class="wuaGreyTR">
-								<td class='text-white'>WHO?</td>
-								<td class='text-white'>WHERE</td>
-								<td class='text-white'>ETA</td>
+						<table class="text-center">
+							<tr id="noGuestbook">
+								<td width="90%" class="text-center" style="border-radius: 20px;text-size:20px;">No one has signed the guestbook :(<br />Invite some buds over!</td>
 							</tr>
-							<tr class="wuaGreyTR">
-								<td>PATTY</td>
-								<td id="where0">China</td>
-								<td id="when0">One week</td>
+							<tr class="incompleteTask">
+								<td width="15%" id="guestbookOwner0"></td>
+								<td width="75%" id="guestbook0"></td>
 							</tr>
-							<tr class="wuaGreyTR">
-								<td>GUS</td>
-								<td id="where1">Makerspace</td>
-								<td id="when1">7:00P</td>
+							<tr class="incompleteTask">
+								<td width="15%" id="guestbookOwner1"></td>
+								<td width="75%" id="guestbook1"></td>
 							</tr>
-							<tr>
-								<td>CHRIS</td>
-								<td id="where2">Charlotte, NC</td>
-								<td id="when2">Never</td>
+							<tr class="incompleteTask">
+								<td width="15%" id="guestbookOwner2"></td>
+								<td width="75%" id="guestbook2"></td>
 							</tr>
 						</table>
 					</div>

@@ -36,7 +36,7 @@ function loadChores() {
 					// console.log('Chore incomplete:');
 					// console.log(myData.chores[j]);
 					document.getElementById('chore'+unfinishedChores).innerHTML = myData.chores[j].task;
-					document.getElementById('choreOwner'+unfinishedChores).innerHTML = String(myData.chores[j].assignedTo).charAt(0).toUpperCase();
+					document.getElementById('choreOwner'+unfinishedChores).innerHTML = capitalizeFirstLetter(myData.chores[j].assignedTo);
 					$('#chore'+unfinishedChores).parent().show();
 					unfinishedChores++;
 					if( unfinishedChores == 3 ) {
@@ -57,7 +57,7 @@ function loadChores() {
 				if( (myData.chores[j].assignedTo == person)&&(myData.chores[j].completed == 'no')) {
 					// console.log(myData.chores[j]);
 					document.getElementById(r).innerHTML = myData.chores[j].task;
-					document.getElementById('choreOwner'+unfinishedChores).innerHTML = person.charAt(0).toUpperCase();
+					document.getElementById('choreOwner'+unfinishedChores).innerHTML = capitalizeFirstLetter(person);
 					unfinishedChores++;
 					if( typeof myData[entries][person][r] !== 'undefined' ) {
 						$('#'+r).parent().show();
@@ -66,6 +66,28 @@ function loadChores() {
 					$('#noChores').show();
 				}
 			}
+		}
+	}
+}
+
+function loadGuestbook() {
+	var myData = JSON.parse(localStorage.getItem('guestbookStorage')),
+		unfinishedChores = 0,
+		owner, 
+		message;
+	for( var j=0 ; j<3 ; j++ ) {
+
+		$('#guestbook'+j).parent().hide();
+	}
+	$('#noGuestbook').hide();
+	for( var i=0 ; i<3 ; i++ ) {
+		owner = 'guestbookOwner'+i;
+		ownerMessage = 'guestbook'+i;
+		if( typeof myData.guestbook[myData.guestbook.length-1-i] !== 'undefined' ) {
+			console.log('Showing entry ' + i );
+			document.getElementById(owner).innerHTML = myData.guestbook[myData.guestbook.length-1-i].visitor;
+			document.getElementById(ownerMessage).innerHTML = myData.guestbook[myData.guestbook.length-1-i].message;
+			$('#'+ownerMessage).parent().show();
 		}
 	}
 }
@@ -90,7 +112,7 @@ function loadEntries(entry) {
 				var person = people[j],
 					entry0 = entry + '0';
 				document.getElementById(entry + j).innerHTML = myData[entries][person][entry0];
-				document.getElementById(entryOwner+j).innerHTML = person.charAt(0).toUpperCase();
+				document.getElementById(entryOwner+j).innerHTML = capitalizeFirstLetter(person);
 				if( typeof myData[entries][person][entry0] !== 'undefined' ) {
 					$('#' + entry + j).parent().show();
 				}
@@ -105,7 +127,7 @@ function loadEntries(entry) {
 				var person = potentialPerson;
 				var r = entry+j
 				document.getElementById(r).innerHTML = myData[entries][person][r];
-				document.getElementById(entryOwner+j).innerHTML = person.charAt(0).toUpperCase();
+				document.getElementById(entryOwner+j).innerHTML = capitalizeFirstLetter(person);
 				if( typeof myData[entries][person][r] !== 'undefined' ) {
 					$('#'+r).parent().show();
 				}
@@ -148,6 +170,8 @@ function updateChoreTimes() {
 		d = new Date(),
         seconds = d.getTime() / 1000;
 
+    console.log(myData);
+
 	for( var i=0 ; i<myData.chores.length ; i++ ) {
 		randomRoomie = people[Math.floor(Math.random() * people.length)];
 		choreInterval = myData.chores[i].frequency;
@@ -182,7 +206,7 @@ function wordsToSeconds(words) {
 		case 'Biweekly': count = 1209600; break;
 		case 'Monthly': count = 2592000; break;
 		case 'Bimonthly': count = 5184000; break;
-		default: console.log('default case'); count = 60;
+		default: console.log('default minute case'); count = 60;
 	}
 	return count;
 }
@@ -209,7 +233,7 @@ function curveCorners() {
 	var mult, blockComplete, sum,
 		foundFirstRow, nonvisibles, potentialLoner;
 	// console.log(c);
-	for( var i=0 ; i<3 ; i++ ) {
+	for( var i=0 ; i<4 ; i++ ) {
 		mult = i*3;
 		blockComplete = false;
 		foundFirstRow = false;

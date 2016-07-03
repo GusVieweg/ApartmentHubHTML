@@ -31,30 +31,35 @@ function addChore() {
 function completeChore() {
     var myData = JSON.parse(localStorage.getItem('choresStorage')),
         tc = document.getElementById("choreTable"),
-        elements = tc.getElementsByTagName('td');
+        elements = tc.getElementsByTagName('td'),
+        person = whoIsLoggedIn();
 
     document.getElementById('selectDivToRemoveText').innerHTML = 'Which chore did you complete?';
-    $("#selectDivToRemove").show();
+    if( person != 0 ) {
+        $("#selectDivToRemove").show();
 
-    for( var i=0, len=elements.length ; i<len ; i++ ) {
-        elements[i].onclick = function(){
+        for( var i=0, len=elements.length ; i<len ; i++ ) {
+            elements[i].onclick = function(){
 
-            // Change value on screen
-            $(this).parent()[0].children[3].innerText = 'Yes';
-            $(this).parent()[0].children[3].style.color = '#7D7';
-            
-            // Change value in JSON
-            toUpdateNum = ($(this).parent().index()-1);
-            myData.chores[toUpdateNum].completed = 'yes';
-            localStorage.setItem('choresStorage', JSON.stringify(myData));
+                // Change value on screen
+                $(this).parent()[0].children[3].innerText = 'Yes';
+                $(this).parent()[0].children[3].style.color = '#7D7';
+                
+                // Change value in JSON
+                toUpdateNum = ($(this).parent().index()-1);
+                myData.chores[toUpdateNum].completed = 'yes';
+                localStorage.setItem('choresStorage', JSON.stringify(myData));
 
-            // Clean up
-            for( var j=0 ; j<len ; j++ ) {
-                elements[j].onclick = null;
+                // Clean up
+                for( var j=0 ; j<len ; j++ ) {
+                    elements[j].onclick = null;
+                }
+                $('#selectDivToRemove').hide();
+
             }
-            $('#selectDivToRemove').hide();
-
         }
+    } else {
+        alert('Please log in to complete your chore.');
     }
 }
 
@@ -103,28 +108,32 @@ function removeChore() {
     var myData = JSON.parse(localStorage.getItem('choresStorage'));
     var tc = document.getElementById("choreTable"),
         elements = tc.getElementsByTagName('td'),
-        toRemoveNum, person, personPlace,
-        people = ['patty', 'gus', 'chris'];
+        toRemoveNum, 
+        person = whoIsLoggedIn();
 
-    $("#selectDivToRemove").show();
+    if( person != 0 ) {
+        $("#selectDivToRemove").show();
 
-    for( var i=0, len=elements.length ; i<len ; i++ ) {
-        elements[i].onclick = function(){
+        for( var i=0, len=elements.length ; i<len ; i++ ) {
+            elements[i].onclick = function(){
 
-            // Get rid of locations on the screen
-            switchColumn($(this).parent(), personPlace);
-            
-            // Get rid of locations in the JSON
-            toRemoveNum = ($(this).parent().index()-1);
-            switchJSON(myData, toRemoveNum);
+                // Get rid of locations on the screen
+                switchColumn($(this).parent());
+                
+                // Get rid of locations in the JSON
+                toRemoveNum = ($(this).parent().index()-1);
+                switchJSON(myData, toRemoveNum);
 
-            // Clean up
-            for( var j=0 ; j<len ; j++ ) {
-                elements[j].onclick = null;
+                // Clean up
+                for( var j=0 ; j<len ; j++ ) {
+                    elements[j].onclick = null;
+                }
+                deleteExcessiveRow(myData);
+                $('#selectDivToRemove').hide();
             }
-            deleteExcessiveRow(myData);
-            $('#selectDivToRemove').hide();
         }
+    } else {
+        alert('Please log in to remove a chore.');
     }
 }
 
@@ -132,7 +141,6 @@ function loadChorePage() {
     var myData = JSON.parse(localStorage.getItem('choresStorage')),
     	numOfChores = myData.chores.length,
     	people = ["patty", "gus", "chris"],
-    	tc = document.getElementById("wuaTable"),
     	tabularData;
 
     $("#selectDivToRemove").hide();
@@ -201,7 +209,7 @@ function selectFrequency(clickedItem) {
 
 function deleteExcessiveRow(myData) {
     var rowCount = $('#choreTable tr').length-1;
-    if( myData.maxEntries !== rowCount ) {
+    if( myData.chores.length !== rowCount ) {
         $('#choreTable tr:last').remove();
     }
 }
