@@ -2,10 +2,10 @@
 // EXAMPLE LOCAL STORAGE: {"locations":{"patty":{"numberOfEntries":5,"location0":"Home","location1":"Main Campus","location2":"Centennial Campus","location3":"Parent's House","location4":"Stefan's House"},"gus":{"numberOfEntries":4,"location0":"Home","location1":"Main Campus","location2":"Centennial Campus","location3":"Addie's House"},"chris":{"numberOfEntries":1,"location0":"Work"}},"maxEntries":5}
 
 function addLocation() {
-	var myData = JSON.parse(localStorage.getItem('locationsStorage'));
+    var myData = JSON.parse(localStorage.getItem('locationsStorage'));
     $('#selectDivToRemove').show();
 
-	var promptMessage = "Please enter a location";
+    var promptMessage = "Please enter a location";
     var locationSubmit = prompt(promptMessage, "");
     var promptMessage2 = "Please enter a letter";
     var letterSubmit = prompt(promptMessage2, "");
@@ -19,7 +19,7 @@ function addLocation() {
 
         var string = "location" + myData.locations[person].numberOfEntries;
         
-    	if( myData.maxEntries === myData.locations[person].numberOfEntries ) {
+        if( myData.maxEntries === myData.locations[person].numberOfEntries ) {
             console.log("Number of entries is equal to max entries");
             $('#wuaTable tbody:last').append("<tr><td class='patty'></td><td class='gus'></td><td class='chris'></td></tr>");
             myData.maxEntries++;

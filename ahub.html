@@ -1,167 +1,167 @@
 <html>
-	<head>
-		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-		<link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" type="text/css" href="quicksand.css">
-		<link rel="stylesheet" type="text/css" href="ahub.css">
-		<script src="ahub.js" type="text/javascript"></script>
-		<script src="login.js"></script>
-		<script src="filter.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script> <!-- JQUERY -->
-		<script>
-			window.onload = function() {
-				bootup();
-			    updateClock();
-			    updateChoreTimes();
-			    loadEntries('reminder');
-			    loadEntries('achievement');
-			    loadChores();
-			    loadGuestbook();
-			    curveCorners();
-			};
-		</script>
-	</head>
-	<body>
-		<div class="container-fluid">
-			<div id="loginBlock">
-				<div class="row" style="margin:8% 0% 8% 0%">
-					<span class="text-center"><h1>Select your name</h1></span>
-				</div>
-				<div class="row">
-					<span class="col-xs-2"></span>
-					<span class="loginOption col-xs-2 text-center text-white" id="pattyLogin" onclick='selectPerson("patty")'>Patty</span>
-					<span class="col-xs-1"></span>
-					<span class="loginOption col-xs-2 text-center text-white" id="gusLogin" onclick='selectPerson("gus")'>Gus</span>
-					<span class="col-xs-1"></span>
-					<span class="loginOption col-xs-2 text-center text-white" id="chrisLogin" onclick='selectPerson("chris")'>Chris</span>
-					<span class="col-xs-2"></span>
-				</div>
-				<div id="enterYourPassword">
-					<div class="row" style="margin:8% 0% 8% 0%">
-						<span class="text-center"><h1>Enter your password</h1></span>
-					</div>
-					<div class="row text-center">
-						<form method="POST" id="enterForm" onsubmit='validateForm("enter")'>
-							<input type="password" name="password">
-							<input type="submit">
-						</form>
-					</div>
-				</div>
-				<div id="createYourPassword">
-					<div class="row" style="margin:8% 0% 8% 0%">
-						<span class="text-center"><h1>Create your password</h1></span>
-					</div>
-					<div class="row text-center">
-						<form method="POST" id="createForm" onsubmit='validateForm("create")'>
-							<input type="password" name="password">
-							<input type="submit">
-						</form>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-6"><h1 class="text-white text-center"><i>THE 1234 AT A GLANCE</i></h1></div>
-				<div class="col-xs-6 text-white" id="datetime"></div>
-			</div>
-			<div class="row">
-				<div class="leftNarrowStack">
-					<div class="mainBorder" id="guestbookPanel">
-						<h3 class="text-center text-white"><a href="guestbook.html">Guestbook</a></h3>
-						<hr />
-						<table class="text-center">
-							<tr id="noGuestbook">
-								<td width="90%" class="text-center" style="border-radius: 20px;text-size:20px;">No one has signed the guestbook :(<br />Invite some buds over!</td>
-							</tr>
-							<tr class="incompleteTask">
-								<td width="15%" id="guestbookOwner0"></td>
-								<td width="75%" id="guestbook0"></td>
-							</tr>
-							<tr class="incompleteTask">
-								<td width="15%" id="guestbookOwner1"></td>
-								<td width="75%" id="guestbook1"></td>
-							</tr>
-							<tr class="incompleteTask">
-								<td width="15%" id="guestbookOwner2"></td>
-								<td width="75%" id="guestbook2"></td>
-							</tr>
-						</table>
-					</div>
-					<div class="mainBorder" id="choresPanel">
-						<h3 class="text-center text-white"><a href="choresList.html">Chores List</a></h3>
-						<hr />
-						<table class="text-center">
-							<tr id="noChores">
-								<td width="90%" class="text-center" style="border-radius: 20px;text-size:20px;">All chores completed!<br />Nice job!</td>
-							</tr>
-							<tr class="incompleteTask">
-								<td width="15%" id="choreOwner0"></td>
-								<td width="75%" id="chore0"></td>
-							</tr>
-							<tr class="incompleteTask">
-								<td width="15%" id="choreOwner1"></td>
-								<td width="75%" id="chore1"></td>
-							</tr>
-							<tr class="incompleteTask">
-								<td width="15%" id="choreOwner2"></td>
-								<td width="75%" id="chore2"></td>
-							</tr>
-						</table>
-					</div>
-					<div class="optionButton text-white" id="loginText" onclick="showLogin()"><h6 class="text-center"><b>Login</b></h6></div>
-					<div class="optionButton text-white" id="logoutText" onclick="logout()"><h6 class="text-center"><b id="logoutTextBold"></b></h5></div>
-				</div>
-				<div class="col mainBorder" id="dayCalendarPanel">
-					<h1 class="text-center text-white"><a href="calendar.html">Calendar</a></h1>
-					<hr />
-				</div>
-				<div class="rightNarrowStack">
-					<div class="col mainBorder" id="reminderPanel">
-						<h3 class="text-center text-white"><a href="reminders.html">Reminders</a></h3>
-						<hr />
-						<table class="text-center">
-							<tr id="noReminders">
-								<td width="90%" class="text-center" style="border-radius: 20px;text-size:20px;">No reminders to show.</td>
-							</tr>
-							<tr class="incompleteTask">
-								<td width="15%" id="reminderOwner0"></td>
-								<td width="75%" id="reminder0"></td>
-							</tr>
-							<tr class="incompleteTask">
-								<td width="15%" id="reminderOwner1"></td>
-								<td width="75%" id="reminder1"></td>
-							</tr>
-							<tr class="incompleteTask">
-								<td width="15%" id="reminderOwner2"></td>
-								<td width="75%" id="reminder2"></td>
-							</tr>
-						</table>
-					</div>
-					<div class="col mainBorder" id="achievementsPanel">
-						<h3 class="text-center text-white"><a href="achievements.html">Recent Achievements</a></h3>
-						<hr />
-						<table class="text-center">
-							<tr id="noAchievements">
-								<td width="90%" class="text-center" style="border-radius: 20px;text-size:20px;">No achievements to show.<br />Go do something!</td>
-							</tr>
-							<tr class="incompleteTask">
-								<td width="15%" id='achievementOwner0'></td>
-								<td width="75%" id="achievement0"></td>
-							</tr>
-							<tr class="incompleteTask">
-								<td width="15%" id='achievementOwner1'></td>
-								<td width="75%" id="achievement1"></td>
-							</tr>
-							<tr class="incompleteTask">
-								<td width="15%" id='achievementOwner2'></td>
-								<td width="75%" id="achievement2"></td>
-							</tr>
-						</table>
-					</div>
-					<div class="optionButton text-white" id="filterOnText" onclick='defilter()'><h6 class="text-center"><b id="filterOn"><b></h6></div>
-					<div class="optionButton text-white" id="filterOffText" onclick='filter()'><h6 class="text-center"><b id="filterOff">Filter<b></h6></div>
-				</div>
-			</div>
-		</div>
-	</body>
+    <head>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="quicksand.css">
+        <link rel="stylesheet" type="text/css" href="ahub.css">
+        <script src="ahub.js" type="text/javascript"></script>
+        <script src="login.js"></script>
+        <script src="filter.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script> <!-- JQUERY -->
+        <script>
+            window.onload = function() {
+                bootup();
+                updateClock();
+                updateChoreTimes();
+                loadEntries('reminder');
+                loadEntries('achievement');
+                loadChores();
+                loadGuestbook();
+                curveCorners();
+            };
+        </script>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div id="loginBlock">
+                <div class="row" style="margin:8% 0% 8% 0%">
+                    <span class="text-center"><h1>Select your name</h1></span>
+                </div>
+                <div class="row">
+                    <span class="col-xs-2"></span>
+                    <span class="loginOption col-xs-2 text-center text-white" id="pattyLogin" onclick='selectPerson("patty")'>Patty</span>
+                    <span class="col-xs-1"></span>
+                    <span class="loginOption col-xs-2 text-center text-white" id="gusLogin" onclick='selectPerson("gus")'>Gus</span>
+                    <span class="col-xs-1"></span>
+                    <span class="loginOption col-xs-2 text-center text-white" id="chrisLogin" onclick='selectPerson("chris")'>Chris</span>
+                    <span class="col-xs-2"></span>
+                </div>
+                <div id="enterYourPassword">
+                    <div class="row" style="margin:8% 0% 8% 0%">
+                        <span class="text-center"><h1>Enter your password</h1></span>
+                    </div>
+                    <div class="row text-center">
+                        <form method="POST" id="enterForm" onsubmit='validateForm("enter")'>
+                            <input type="password" name="password">
+                            <input type="submit">
+                        </form>
+                    </div>
+                </div>
+                <div id="createYourPassword">
+                    <div class="row" style="margin:8% 0% 8% 0%">
+                        <span class="text-center"><h1>Create your password</h1></span>
+                    </div>
+                    <div class="row text-center">
+                        <form method="POST" id="createForm" onsubmit='validateForm("create")'>
+                            <input type="password" name="password">
+                            <input type="submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6"><h1 class="text-white text-center"><i>THE 3222 AT A GLANCE</i></h1></div>
+                <div class="col-xs-6 text-white" id="datetime"></div>
+            </div>
+            <div class="row">
+                <div class="leftNarrowStack">
+                    <div class="mainBorder" id="guestbookPanel">
+                        <h3 class="text-center text-white"><a href="guestbook.html">Guestbook</a></h3>
+                        <hr />
+                        <table class="text-center">
+                            <tr id="noGuestbook">
+                                <td width="90%" class="text-center" style="border-radius: 20px;text-size:20px;">No one has signed the guestbook :(<br />Invite some buds over!</td>
+                            </tr>
+                            <tr class="incompleteTask">
+                                <td width="15%" id="guestbookOwner0"></td>
+                                <td width="75%" id="guestbook0"></td>
+                            </tr>
+                            <tr class="incompleteTask">
+                                <td width="15%" id="guestbookOwner1"></td>
+                                <td width="75%" id="guestbook1"></td>
+                            </tr>
+                            <tr class="incompleteTask">
+                                <td width="15%" id="guestbookOwner2"></td>
+                                <td width="75%" id="guestbook2"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="mainBorder" id="choresPanel">
+                        <h3 class="text-center text-white"><a href="choresList.html">Chores List</a></h3>
+                        <hr />
+                        <table class="text-center">
+                            <tr id="noChores">
+                                <td width="90%" class="text-center" style="border-radius: 20px;text-size:20px;">All chores completed!<br />Nice job!</td>
+                            </tr>
+                            <tr class="incompleteTask">
+                                <td width="15%" id="choreOwner0"></td>
+                                <td width="75%" id="chore0"></td>
+                            </tr>
+                            <tr class="incompleteTask">
+                                <td width="15%" id="choreOwner1"></td>
+                                <td width="75%" id="chore1"></td>
+                            </tr>
+                            <tr class="incompleteTask">
+                                <td width="15%" id="choreOwner2"></td>
+                                <td width="75%" id="chore2"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="optionButton text-white" id="loginText" onclick="showLogin()"><h6 class="text-center"><b>Login</b></h6></div>
+                    <div class="optionButton text-white" id="logoutText" onclick="logout()"><h6 class="text-center"><b id="logoutTextBold"></b></h5></div>
+                </div>
+                <div class="col mainBorder" id="dayCalendarPanel">
+                    <h1 class="text-center text-white"><a href="calendar.html">Calendar</a></h1>
+                    <hr />
+                </div>
+                <div class="rightNarrowStack">
+                    <div class="col mainBorder" id="reminderPanel">
+                        <h3 class="text-center text-white"><a href="reminders.html">Reminders</a></h3>
+                        <hr />
+                        <table class="text-center">
+                            <tr id="noReminders">
+                                <td width="90%" class="text-center" style="border-radius: 20px;text-size:20px;">No reminders to show.</td>
+                            </tr>
+                            <tr class="incompleteTask">
+                                <td width="15%" id="reminderOwner0"></td>
+                                <td width="75%" id="reminder0"></td>
+                            </tr>
+                            <tr class="incompleteTask">
+                                <td width="15%" id="reminderOwner1"></td>
+                                <td width="75%" id="reminder1"></td>
+                            </tr>
+                            <tr class="incompleteTask">
+                                <td width="15%" id="reminderOwner2"></td>
+                                <td width="75%" id="reminder2"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col mainBorder" id="achievementsPanel">
+                        <h3 class="text-center text-white"><a href="achievements.html">Recent Achievements</a></h3>
+                        <hr />
+                        <table class="text-center">
+                            <tr id="noAchievements">
+                                <td width="90%" class="text-center" style="border-radius: 20px;text-size:20px;">No achievements to show.<br />Go do something!</td>
+                            </tr>
+                            <tr class="incompleteTask">
+                                <td width="15%" id='achievementOwner0'></td>
+                                <td width="75%" id="achievement0"></td>
+                            </tr>
+                            <tr class="incompleteTask">
+                                <td width="15%" id='achievementOwner1'></td>
+                                <td width="75%" id="achievement1"></td>
+                            </tr>
+                            <tr class="incompleteTask">
+                                <td width="15%" id='achievementOwner2'></td>
+                                <td width="75%" id="achievement2"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="optionButton text-white" id="filterOnText" onclick='defilter()'><h6 class="text-center"><b id="filterOn"><b></h6></div>
+                    <div class="optionButton text-white" id="filterOffText" onclick='filter()'><h6 class="text-center"><b id="filterOff">Filter<b></h6></div>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>

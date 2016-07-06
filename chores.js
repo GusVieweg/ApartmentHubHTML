@@ -19,13 +19,13 @@ function capitalizeFirstLetter(string) {
 }
 
 function addChore() {
-	var person = whoIsLoggedIn();
-	if( person != 0 ) {
-		$('#choreCreation').show();
-		// console.log('showing chore creation');
-	} else {
-		alert('Please log in to add a new chore.');
-	}
+    var person = whoIsLoggedIn();
+    if( person != 0 ) {
+        $('#choreCreation').show();
+        // console.log('showing chore creation');
+    } else {
+        alert('Please log in to add a new chore.');
+    }
 }
 
 function completeChore() {
@@ -64,43 +64,43 @@ function completeChore() {
 }
 
 function returnFrequencySelected() {
-	var	listOfChoreOptions = document.getElementsByClassName('choreOption'),
-		returnVal = 0,
-		locoLength = listOfChoreOptions.length;
-	for( var i=0 ; i<locoLength ; i++ ) {
-		if( listOfChoreOptions[i].style.backgroundColor == 'black' ) {
-			returnVal = listOfChoreOptions[i].innerHTML;
-		}
-	}
-	return returnVal;
+    var    listOfChoreOptions = document.getElementsByClassName('choreOption'),
+        returnVal = 0,
+        locoLength = listOfChoreOptions.length;
+    for( var i=0 ; i<locoLength ; i++ ) {
+        if( listOfChoreOptions[i].style.backgroundColor == 'black' ) {
+            returnVal = listOfChoreOptions[i].innerHTML;
+        }
+    }
+    return returnVal;
 }
 
 function submitChore() {
-	//myData.chores[i].task/frequency/assignedTo/completed
-	var myData = JSON.parse(localStorage.getItem('choresStorage')),
-		frequencySelected = returnFrequencySelected(),
-		person = whoIsLoggedIn(),
-		people = ['patty', 'gus', 'chris'],
-		randomRoomie = people[Math.floor(Math.random() * people.length)],
-		taskName = document.forms["choreForm"]["choreName"].value,
-		newEntrySpot = myData.chores.length;
+    //myData.chores[i].task/frequency/assignedTo/completed
+    var myData = JSON.parse(localStorage.getItem('choresStorage')),
+        frequencySelected = returnFrequencySelected(),
+        person = whoIsLoggedIn(),
+        people = ['patty', 'gus', 'chris'],
+        randomRoomie = people[Math.floor(Math.random() * people.length)],
+        taskName = document.forms["choreForm"]["choreName"].value,
+        newEntrySpot = myData.chores.length;
         d = new Date(),
         seconds = d.getTime() / 1000;
 
-	if( person != 0 ) {
-		myData.chores[newEntrySpot] = {
-			task: taskName,
-			frequency: frequencySelected,
-			assignedTo: randomRoomie,
+    if( person != 0 ) {
+        myData.chores[newEntrySpot] = {
+            task: taskName,
+            frequency: frequencySelected,
+            assignedTo: randomRoomie,
             completed: 'no',
             lastDone: seconds
-		}
-		$('#choreTable tbody:last').append('<tr><td class="task"><h4>'+capitalizeFirstLetter(taskName)
-        								   +'</h4></td><td class="freq"><h4>'
-        								   +capitalizeFirstLetter(frequencySelected)+'</h4></td><td class="assignedTo"><h4>'
-        								   +capitalizeFirstLetter(randomRoomie)+'</h4></td><td><h4 style="color:#A02A0E">No</h4></td></tr>');
-		localStorage.setItem('choresStorage', JSON.stringify(myData));
-	}
+        }
+        $('#choreTable tbody:last').append('<tr><td class="task"><h4>'+capitalizeFirstLetter(taskName)
+                                           +'</h4></td><td class="freq"><h4>'
+                                           +capitalizeFirstLetter(frequencySelected)+'</h4></td><td class="assignedTo"><h4>'
+                                           +capitalizeFirstLetter(randomRoomie)+'</h4></td><td><h4 style="color:#A02A0E">No</h4></td></tr>');
+        localStorage.setItem('choresStorage', JSON.stringify(myData));
+    }
     $('#choreCreation').hide();
 }
 
@@ -139,37 +139,37 @@ function removeChore() {
 
 function loadChorePage() {
     var myData = JSON.parse(localStorage.getItem('choresStorage')),
-    	numOfChores = myData.chores.length,
-    	people = ["patty", "gus", "chris"],
-    	tabularData;
+        numOfChores = myData.chores.length,
+        people = ["patty", "gus", "chris"],
+        tabularData;
 
     $("#selectDivToRemove").hide();
     
     for( var c=0 ; c<numOfChores ; c++ ) {
         var classNombre = 'completeBlock'+c;
         $('#choreTable tbody:last').append('<tr><td class="task"><h4>'+capitalizeFirstLetter(myData.chores[c].task)
-        								   +'</h4></td><td class="freq"><h4>'
-        								   +capitalizeFirstLetter(myData.chores[c].frequency)+'</h4></td><td class="assignedTo"><h4>'
-        								   +capitalizeFirstLetter(myData.chores[c].assignedTo)+'</h4></td><td><h4 id='+classNombre+'>'
+                                           +'</h4></td><td class="freq"><h4>'
+                                           +capitalizeFirstLetter(myData.chores[c].frequency)+'</h4></td><td class="assignedTo"><h4>'
+                                           +capitalizeFirstLetter(myData.chores[c].assignedTo)+'</h4></td><td><h4 id='+classNombre+'>'
                                            +capitalizeFirstLetter(myData.chores[c].completed)+'</h4></td></tr>');
         var colorComplete = document.getElementById(classNombre);
         if( colorComplete.innerHTML == 'Yes' ) { colorComplete.style.color = '#77DD77'; }
         else if( colorComplete.innerHTML == 'No' ) { colorComplete.style.color = '#A02A0E'; }
-	}
+    }
 }
 
 function switchColumn(jParent) {
     var next = jParent.next();
     if( typeof next[0] !== "undefined" ) {
-    	for( var i=0 ; i<3 ; i++ ) {
-	        var nextText = next[0].children[i].innerHTML,
-	            thisTextContainer = jParent[0].children[i];
-	        thisTextContainer.innerHTML = nextText;
-	    }
+        for( var i=0 ; i<3 ; i++ ) {
+            var nextText = next[0].children[i].innerHTML,
+                thisTextContainer = jParent[0].children[i];
+            thisTextContainer.innerHTML = nextText;
+        }
         switchColumn(next);
     } else {
-    	for( var j=0 ; j<3 ; j++ ) {
-        	jParent[0].children[j].innerHTML = "";
+        for( var j=0 ; j<3 ; j++ ) {
+            jParent[0].children[j].innerHTML = "";
         }
     }
 }
@@ -192,19 +192,19 @@ function switchJSON(myData, startingNum) {
 } 
 
 function selectFrequency(clickedItem) {
-	var frequencyJSON = String(clickedItem).charAt(0).toLowerCase() + String(clickedItem).slice(1),
-		listOfChoreOptions = document.getElementsByClassName('choreOption'),
-		alreadySelected = false,
-		locoLength = listOfChoreOptions.length;
-	for( var i=0 ; i<locoLength ; i++ ) {
-		if( listOfChoreOptions[i].style.backgroundColor == 'black' ) {
-			alreadySelected = true;
-		}
-	}
-	if(!alreadySelected) {
-		$(clickedItem).css('background-color', 'black');
-	}
-	// console.log(clickedItem.innerHTML);
+    var frequencyJSON = String(clickedItem).charAt(0).toLowerCase() + String(clickedItem).slice(1),
+        listOfChoreOptions = document.getElementsByClassName('choreOption'),
+        alreadySelected = false,
+        locoLength = listOfChoreOptions.length;
+    for( var i=0 ; i<locoLength ; i++ ) {
+        if( listOfChoreOptions[i].style.backgroundColor == 'black' ) {
+            alreadySelected = true;
+        }
+    }
+    if(!alreadySelected) {
+        $(clickedItem).css('background-color', 'black');
+    }
+    // console.log(clickedItem.innerHTML);
 }
 
 function deleteExcessiveRow(myData) {

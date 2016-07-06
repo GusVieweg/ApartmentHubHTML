@@ -1,44 +1,44 @@
 <html>
-	<head>
-		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-		<link rel="stylesheet" type="text/css" href="wua.css">
-		<link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" type="text/css" href="quicksand.css">
-		<script src="wua.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script> <!-- JQUERY -->
-	</head>
-	<body onload="loadWUAPage()">
-		<div class="container-fluid">
-			<div>
-				<h1 class="text-center text-white"><i>Where is everyone?</i></h1>
-				<hr />
-			</div>
-			<div class="row" id="tableContainer">
-				<table class="text-center lightBrown" id="wuaTable">
-					<tr>
-						<th class="text-center patty bottomTB upperLeft" id="pattyLocations0"><h3>Patty's Locations</h3></th>
-						<th class="text-center gus bottomTB" id="gusLocations1"><h3>Gus's Locations</h3></th>
-						<th class="text-center bottomTB upperRight" id="chrisLocations2"><h3>Chris's Locations</h3></th>
-					</tr>
-				</table>
-			</div>
-			<div class="row" id="selectDivToRemove">
-				<h1 class="text-center">Whose column of locations are you changing?</h1>
-			</div>
-			<div class="row">
-				<a href="ahub.html">
-					<div class="return">
-						<p class="text-center textReturn">Return home</p>
-					</div>
-				</a>
-				<div class="addALocation" onclick="addLocation()">
-					<p class="text-center textReturn">Add a location</p>
-				</div>
-				<div class="removeALocation" onclick="removeLocation()">
-					<p class="text-center textReturn" >Delete a location</p>
-				</div>
-			</div>
-		</div>
-	</body>
+    <head>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="wua.css">
+        <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="quicksand.css">
+        <script src="wua.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script> <!-- JQUERY -->
+    </head>
+    <body onload="loadWUAPage()">
+        <div class="container-fluid">
+            <div>
+                <h1 class="text-center text-white"><i>Where is everyone?</i></h1>
+                <hr />
+            </div>
+            <div class="row" id="tableContainer">
+                <table class="text-center lightBrown" id="wuaTable">
+                    <tr>
+                        <th class="text-center patty bottomTB upperLeft" id="pattyLocations0"><h3>Patty's Locations</h3></th>
+                        <th class="text-center gus bottomTB" id="gusLocations1"><h3>Gus's Locations</h3></th>
+                        <th class="text-center bottomTB upperRight" id="chrisLocations2"><h3>Chris's Locations</h3></th>
+                    </tr>
+                </table>
+            </div>
+            <div class="row" id="selectDivToRemove">
+                <h1 class="text-center">Whose column of locations are you changing?</h1>
+            </div>
+            <div class="row">
+                <a href="ahub.html">
+                    <div class="return">
+                        <p class="text-center textReturn">Return home</p>
+                    </div>
+                </a>
+                <div class="addALocation" onclick="addLocation()">
+                    <p class="text-center textReturn">Add a location</p>
+                </div>
+                <div class="removeALocation" onclick="removeLocation()">
+                    <p class="text-center textReturn" >Delete a location</p>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>

@@ -19,7 +19,7 @@ function whoIsLoggedIn() {
 function createLogTime() {
     var now = new Date(), // current date
         months = ['January', 'February', 'March', 'April', 'May', 'June',
-        		  'July', 'August', 'September', 'October', 'November', 'December'], // you get the idea
+                  'July', 'August', 'September', 'October', 'November', 'December'], // you get the idea
         hours = now.getHours() > 12 ? (now.getHours()-12) : now.getHours(),
         minutes = now.getMinutes() > 10 ? now.getMinutes() : ('0' + now.getMinutes());
         time = hours + ':' + minutes,
@@ -36,28 +36,28 @@ function capitalizeFirstLetter(string) {
 }
 
 function addGuestbook() {
-	console.log('sign guestbook called');
-	$('#signGuestbook').show();
+    console.log('sign guestbook called');
+    $('#signGuestbook').show();
 }
 
 function submitGuestbook() {
-	console.log('Entered');
-	var myData = JSON.parse(localStorage.getItem('guestbookStorage')),
-		_visitor = document.forms["guestbookForm"]["guestbookName"].value,
-		logTime = createLogTime();
-		_message = document.forms['guestbookForm']['guestbookMessage'].value,
-		newEntrySpot = myData.guestbook.length;
+    console.log('Entered');
+    var myData = JSON.parse(localStorage.getItem('guestbookStorage')),
+        _visitor = document.forms["guestbookForm"]["guestbookName"].value,
+        logTime = createLogTime();
+        _message = document.forms['guestbookForm']['guestbookMessage'].value,
+        newEntrySpot = myData.guestbook.length;
 
-	myData.guestbook[newEntrySpot] = {
-		visitor: _visitor,
-		when: logTime,
-		message: _message,
-	}
-	$('#guestbookTable tbody:last').append('<tr><td class="visitorTD"><h4>'+capitalizeFirstLetter(_visitor)
-    								   +'</h4></td><td class="whenTD"><h4>'
-    								   +logTime+'</h4></td><td class="messageTD"><h4>'
-    								   +_message+'</h4></td></tr>');
-	localStorage.setItem('guestbookStorage', JSON.stringify(myData));
+    myData.guestbook[newEntrySpot] = {
+        visitor: _visitor,
+        when: logTime,
+        message: _message,
+    }
+    $('#guestbookTable tbody:last').append('<tr><td class="visitorTD"><h4>'+capitalizeFirstLetter(_visitor)
+                                       +'</h4></td><td class="whenTD"><h4>'
+                                       +logTime+'</h4></td><td class="messageTD"><h4>'
+                                       +_message+'</h4></td></tr>');
+    localStorage.setItem('guestbookStorage', JSON.stringify(myData));
     $('#signGuestbook').hide();
 }
 
@@ -69,58 +69,58 @@ function removeGuestbook() {
         person = whoIsLoggedIn();
 
     if( person != 0 ) {
-	    $("#selectDivToRemove").show();
+        $("#selectDivToRemove").show();
 
-	    for( var i=0, len=elements.length ; i<len ; i++ ) {
-	        elements[i].onclick = function(){
+        for( var i=0, len=elements.length ; i<len ; i++ ) {
+            elements[i].onclick = function(){
 
-	            // Get rid of locations on the screen
-	            switchColumn($(this).parent());
-	            
-	            // Get rid of locations in the JSON
-	            toRemoveNum = ($(this).parent().index()-1);
-	            switchJSON(myData, toRemoveNum);
+                // Get rid of locations on the screen
+                switchColumn($(this).parent());
+                
+                // Get rid of locations in the JSON
+                toRemoveNum = ($(this).parent().index()-1);
+                switchJSON(myData, toRemoveNum);
 
-	            // Clean up
-	            for( var j=0 ; j<len ; j++ ) {
-	                elements[j].onclick = null;
-	            }
-	            deleteExcessiveRow(myData);
-	            $('#selectDivToRemove').hide();
-	        }
-	    }
-	} else {
-		alert('Please log in to remove a guestbook entry.');
-	}
+                // Clean up
+                for( var j=0 ; j<len ; j++ ) {
+                    elements[j].onclick = null;
+                }
+                deleteExcessiveRow(myData);
+                $('#selectDivToRemove').hide();
+            }
+        }
+    } else {
+        alert('Please log in to remove a guestbook entry.');
+    }
 }
 
 function loadGuestbookPage() {
     var myData = JSON.parse(localStorage.getItem('guestbookStorage')),
-    	guestbookEntries = myData.guestbook.length,
-    	people = ["patty", "gus", "chris"];
+        guestbookEntries = myData.guestbook.length,
+        people = ["patty", "gus", "chris"];
 
     $("#selectDivToRemove").hide();
     
     for( var g=0 ; g<guestbookEntries ; g++ ) {
         $('#guestbookTable tbody:last').append('<tr><td class="visitorTD"><h4>'+capitalizeFirstLetter(myData.guestbook[g].visitor)
-        								   +'</h4></td><td class="whenTD"><h4>'
-        								   +myData.guestbook[g].when+'</h4></td><td class="messageTD"><h4>'
-        								   +myData.guestbook[g].message+'</h4></td></tr>');
-	}
+                                           +'</h4></td><td class="whenTD"><h4>'
+                                           +myData.guestbook[g].when+'</h4></td><td class="messageTD"><h4>'
+                                           +myData.guestbook[g].message+'</h4></td></tr>');
+    }
 }
 
 function switchColumn(jParent) {
     var next = jParent.next();
     if( typeof next[0] !== "undefined" ) {
-    	for( var i=0 ; i<3 ; i++ ) {
-	        var nextText = next[0].children[i].innerHTML,
-	            thisTextContainer = jParent[0].children[i];
-	        thisTextContainer.innerHTML = nextText;
-	    }
+        for( var i=0 ; i<3 ; i++ ) {
+            var nextText = next[0].children[i].innerHTML,
+                thisTextContainer = jParent[0].children[i];
+            thisTextContainer.innerHTML = nextText;
+        }
         switchColumn(next);
     } else {
-    	for( var j=0 ; j<3 ; j++ ) {
-        	jParent[0].children[j].innerHTML = "";
+        for( var j=0 ; j<3 ; j++ ) {
+            jParent[0].children[j].innerHTML = "";
         }
     }
 }

@@ -8,92 +8,98 @@ html, body {
 }
 
 table, tr {
-	width: 90%;
-	margin: 0 auto;
+    width: 90%;
+    margin: 0 auto;
 }
 
 td {
-	padding: 25px;
-	font-weight: bold;
-	text-align: center;
+    padding: 25px;
+    font-weight: bold;
+    text-align: center;
 }
 
 .achievement {
-	width: 90%;
-	height: 10%;
-	background-color: #AE7957;
-	color: white;
-	margin: 0% 5% 1% 5%;
-	padding: 0% 5%;
-	border-radius: 10px;
+    width: 90%;
+    height: 10%;
+    background-color: #AE7957;
+    color: white;
+    margin: 0% 5% 1% 5%;
+    padding: 0% 5%;
+    border-radius: 10px;
 }
 
 .achievementText {
-	padding: 0% 10%;
+    padding: 0% 10%;
+}
+
+.verticalCenter {
+    position: relative;
+    top: 7%;
+    text-decoration: none;
 }
 
 .return {
-	width: 80%;
-	height: 10%;
-	margin-top: 5%;
-	margin-left: 10%;
-	float: left;
-	text-decoration: none;
-	color: white;
-	border: solid 2px grey;
-	background-color: #3F658C;
-	border-radius: 10px;
-	vertical-align: middle;
-	cursor: pointer, hand;
+    width: 80%;
+    height: 10%;
+    margin-top: 5%;
+    margin-left: 10%;
+    float: left;
+    text-decoration: none;
+    color: white;
+    border: solid 2px grey;
+    background-color: #3F658C;
+    border-radius: 10px;
+    vertical-align: middle;
+    cursor: pointer, hand;
 }
 
 .addAnAchievement {
-	width: 80%;
-	height: 10%;
-	margin-top: 5%;
-	margin-left: 10%;
-	text-decoration: none;
-	color: white;
-	border: solid 2px grey;
-	background-color: #3F658C;
-	border-radius: 10px;
-	vertical-align: middle;
-	cursor: pointer, hand;
+    width: 80%;
+    height: 10%;
+    margin-top: 5%;
+    margin-left: 10%;
+    text-decoration: none;
+    color: white;
+    border: solid 2px grey;
+    background-color: #3F658C;
+    border-radius: 10px;
+    vertical-align: middle;
+    cursor: pointer, hand;
 }
 
 .deleteAnAchievement {
-	width: 80%;
-	height: 10%;
-	margin-top: 5%;
-	margin-left: 10%;
-	text-decoration: none;
-	color: white;
-	border: solid 2px grey;
-	background-color: #A02A0E;
-	border-radius: 10px;
-	vertical-align: middle;
-	cursor: pointer, hand;
+    width: 80%;
+    height: 10%;
+    margin-top: 5%;
+    margin-left: 10%;
+    text-decoration: none;
+    color: white;
+    border: solid 2px grey;
+    background-color: #A02A0E;
+    border-radius: 10px;
+    vertical-align: middle;
+    cursor: pointer, hand;
 }
 
 #selectDivToRemove {
-	width: 100%;
-	height: 20%;
-	margin: 0%;
-	color: white;
-	background-color: #1C2B3E;
-	position: fixed;
-	bottom: 5%;
-	z-index: 9999;
-	font-family: 'Quicksand', sans-serif;
+    width: 100%;
+    height: 20%;
+    margin: 0%;
+    color: white;
+    background-color: #1C2B3E;
+    position: fixed;
+    bottom: 5%;
+    z-index: 9999;
+    font-family: 'Quicksand', sans-serif;
 }
 
 .textReturn {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -35%);
-	text-decoration: none;
-	color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -35%);
+    text-decoration: none;
+    color: white;
 }
 
 .vcenter {

@@ -8,38 +8,38 @@ html, body {
 }
 
 .text-white {
-	color: white;
+    color: white;
 }
 
 #calendarDiv {
-	height: 82.5%;
+    height: 82.5%;
 }
 
 hr {
-	padding: 0px;
-	margin: 1%;
+    padding: 0px;
+    margin: 1%;
 }
 
 .return {
-	width: 10%;
-	height: 7.5%;
-	margin-left: 20%;
-	margin-top: 1%;
-	float: left;
-	text-decoration: none;
-	color: white;
-	border: solid 2px grey;
-	background-color: #3F658C;
-	border-radius: 10px;
-	vertical-align: middle;
-	cursor: pointer, hand;
+    width: 10%;
+    height: 7.5%;
+    margin-left: 20%;
+    margin-top: 1%;
+    float: left;
+    text-decoration: none;
+    color: white;
+    border: solid 2px grey;
+    background-color: #3F658C;
+    border-radius: 10px;
+    vertical-align: middle;
+    cursor: pointer, hand;
 }
 
 .textReturn {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -55%);
-	text-decoration: none;
-	color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -55%);
+    text-decoration: none;
+    color: white;
 }

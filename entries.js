@@ -17,21 +17,21 @@ function capitalizeFirstLetter(string) {
     return String(string).charAt(0).toUpperCase() + String(string).slice(1);
 }
 
-/* 	USAGE:
-	addSomething("name of page","name of division being inserted")*/
+/*  USAGE:
+    addSomething("name of page","name of division being inserted")*/
 
 function addEntry(entry) {
     var entryStorage = entry + "sStorage",
         entryPods = entry + "Pods",
         entries = entry + "s",
-	    myData = JSON.parse(localStorage.getItem(entryStorage)),
+        myData = JSON.parse(localStorage.getItem(entryStorage)),
         person = whoIsLoggedIn(),
         formalPerson = capitalizeFirstLetter(person);
     
     console.log("Person who is logged in: " + person);
 
     if( person != 0 ) {
-    	var promptMessage = "Please enter your " + entry + ", " + formalPerson + "!";
+        var promptMessage = "Please enter your " + entry + ", " + formalPerson + "!";
         var entrySubmit = prompt(promptMessage, "");
         var tc = document.getElementById(entryPods);
         var people = ["patty", "gus", "chris"];
@@ -42,7 +42,7 @@ function addEntry(entry) {
 
             var string = entry + myData[entries][person].numberOfEntries;
             
-        	if( myData.maxEntries === myData[entries][person].numberOfEntries ) {
+            if( myData.maxEntries === myData[entries][person].numberOfEntries ) {
                 console.log("Number of entries is equal to max entries");
                 myData.maxEntries++;
             } else {
@@ -50,9 +50,9 @@ function addEntry(entry) {
             }
 
             if( entry == 'reminder' ) {
-                $('#' + entryPods).append("<div class='"+entry+" vcenter "+person+"'><h3>"+formalPerson+' - '+ entrySubmit + "</h3></div>");
+                $('#' + entryPods).append("<div class='"+entry+" vcenter "+person+"'><h3 class='verticalCenter'>"+formalPerson+' - '+ entrySubmit + "</h3></div>");
             } else {
-                $('#' + entryPods).append("<div class='"+entry+" vcenter "+person+"'><h3>"+formalPerson+' '+ entrySubmit + "!</h3></div>");
+                $('#' + entryPods).append("<div class='"+entry+" vcenter "+person+"'><h3 class='verticalCenter'>"+formalPerson+' '+ entrySubmit + "!</h3></div>");
             }
 
             myData[entries][person].numberOfEntries++;
@@ -82,7 +82,7 @@ function removeEntry(entry) {
             elements[i].onclick = function(){
                 // Get basic info
                 var classes=$(this).attr("class").split(" "),
-        			person=classes[classes.length-1];
+                    person=classes[classes.length-1];
                 personPlace = people.indexOf(person);
 
                 if( personLoggedIn == person ) {
@@ -117,7 +117,7 @@ function loadEntryPage(entry) {
     var entryStorage = entry + "sStorage",
         entryPods = '#' + entry + "Pods",
         entries = entry + "s",
-	    myData = JSON.parse(localStorage.getItem(entryStorage)),
+        myData = JSON.parse(localStorage.getItem(entryStorage)),
         loginData = JSON.parse(localStorage.getItem('loginInfo')),
         people = ["patty", "gus", "chris"],
         personLoggedIn = whoIsLoggedIn(),
@@ -130,9 +130,9 @@ function loadEntryPage(entry) {
             var entryString = entry + j;
             
             if( entry == 'reminder' ) {
-                $(entryPods).append("<div class='"+entry+" vcenter "+personLoggedIn+"'><h3>"+formalPersonLI+' - '+ myData[entries][personLoggedIn][entryString] + "</h3></div>");
+                $(entryPods).append("<div class='"+entry+" vcenter "+personLoggedIn+"'><h3 class='verticalCenter'>"+formalPersonLI+' - '+ myData[entries][personLoggedIn][entryString] + "</h3></div>");
             } else {
-                $(entryPods).append("<div class='"+entry+" vcenter "+personLoggedIn+"'><h3>"+formalPersonLI+' '+ myData[entries][personLoggedIn][entryString] + "!</h3></div>");
+                $(entryPods).append("<div class='"+entry+" vcenter "+personLoggedIn+"'><h3 class='verticalCenter'>"+formalPersonLI+' '+ myData[entries][personLoggedIn][entryString] + "!</h3></div>");
             }
 
         }
@@ -143,9 +143,9 @@ function loadEntryPage(entry) {
             for( var j=0 ; j<myData[entries][person].numberOfEntries ; j++ ) {
                 var entryString = entry + j;
                 if( entry == 'reminder' ) {
-                    $(entryPods).append("<div class='"+entry+" vcenter "+person+"'><h3>"+formalLayman+' - '+ myData[entries][person][entryString] + "</h3></div>");
+                    $(entryPods).append("<div class='"+entry+" vcenter "+person+"'><h3 class='verticalCenter'>"+formalLayman+' - '+ myData[entries][person][entryString] + "</h3></div>");
                 } else {
-                    $(entryPods).append("<div class='"+entry+" vcenter "+person+"'><h3>"+formalLayman+' '+ myData[entries][person][entryString] + "!</h3></div>");
+                    $(entryPods).append("<div class='"+entry+" vcenter "+person+"'><h3 class='verticalCenter'>"+formalLayman+' '+ myData[entries][person][entryString] + "!</h3></div>");
                 }
 
             }

@@ -8,44 +8,44 @@ html, body {
 }
 
 table, tr {
-	width: 90%;
-	margin: 0 auto;
+    width: 90%;
+    margin: 0 auto;
 }
 
 td {
-	text-align: center;
+    text-align: center;
 }
 
 .visitorTD {
-	width: 20%;
-	border-right: 2px solid white;
+    width: 20%;
+    border-right: 2px solid white;
 }
 
 .whenTD {
-	width: 30%;
-	border-right: 2px solid white;
+    width: 30%;
+    border-right: 2px solid white;
 }
 
 .messageTD {
-	width: 50%;
+    width: 50%;
 }
 
 #signGuestbook {
-	width: 44%;
-	margin-left: 26.9%;
-	margin-top: -4%;
-	background-color: #D0B6A5;
-	position: fixed;
-	border-radius: 20px;
+    width: 44%;
+    margin-left: 26.9%;
+    margin-top: -4%;
+    background-color: #D0B6A5;
+    position: fixed;
+    border-radius: 20px;
 }
 
 #submitButton {
-	width: 80%;
-	background-color: grey;
-	border: none;
-	border-radius: 10px;
-	padding: 10px;
-	cursor: pointer;
+    width: 80%;
+    background-color: grey;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
 }
 
 input[type=text] {padding:5px; border:2px solid #ccc; height:60px; width: 50%; font-size: 20px; color:black;
@@ -56,86 +56,86 @@ input[type=text] {padding:5px; border:2px solid #ccc; height:60px; width: 50%; f
 input[type=text]:focus {border-color:#333;transition:1s; }
 
 .header {
-	border-right: 2px solid white;
+    border-right: 2px solid white;
 }
 
 .bottomTB {
-	border-bottom: 2px solid white;
+    border-bottom: 2px solid white;
 }
 
 .lightBrown {
-	background-color: #AE7957;
-	border-radius: 10px;
+    background-color: #AE7957;
+    border-radius: 10px;
 }
 
 .addGuestbook {
-	width: 80%;
-	height: 10%;
-	margin-top: 5%;
-	margin-left: 10%;
-	text-decoration: none;
-	color: white;
-	border: solid 2px grey;
-	background-color: #3F658C;
-	border-radius: 10px;
-	vertical-align: middle;
-	cursor: pointer;
+    width: 80%;
+    height: 10%;
+    margin-top: 5%;
+    margin-left: 10%;
+    text-decoration: none;
+    color: white;
+    border: solid 2px grey;
+    background-color: #3F658C;
+    border-radius: 10px;
+    vertical-align: middle;
+    cursor: pointer;
 }
 
 .deleteGuestbook {
-	width: 80%;
-	height: 10%;
-	margin-top: 5%;
-	margin-left: 10%;
-	text-decoration: none;
-	color: white;
-	border: solid 2px grey;
-	background-color: #A02A0E;
-	border-radius: 10px;
-	vertical-align: middle;
-	cursor: pointer;
+    width: 80%;
+    height: 10%;
+    margin-top: 5%;
+    margin-left: 10%;
+    text-decoration: none;
+    color: white;
+    border: solid 2px grey;
+    background-color: #A02A0E;
+    border-radius: 10px;
+    vertical-align: middle;
+    cursor: pointer;
 }
 
 .return {
-	width: 80%;
-	height: 10%;
-	margin-top: 5%;
-	margin-left: 10%;
-	text-decoration: none;
-	color: white;
-	border: solid 2px grey;
-	background-color: #3F658C;
-	border-radius: 10px;
-	vertical-align: middle;
-	cursor: pointer, hand;
+    width: 80%;
+    height: 10%;
+    margin-top: 5%;
+    margin-left: 10%;
+    text-decoration: none;
+    color: white;
+    border: solid 2px grey;
+    background-color: #3F658C;
+    border-radius: 10px;
+    vertical-align: middle;
+    cursor: pointer, hand;
 }
 
 #selectDivToRemove {
-	width: 100%;
-	height: 20%;
-	margin: 0%;
-	color: white;
-	background-color: #1C2B3E;
-	position: fixed;
-	bottom: 5%;
-	z-index: 9999;
+    width: 100%;
+    height: 20%;
+    margin: 0%;
+    color: white;
+    background-color: #1C2B3E;
+    position: fixed;
+    bottom: 5%;
+    z-index: 9999;
 }
 
 .verticalCenter {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	text-decoration: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-decoration: none;
 }
 
 .textReturn {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -35%);
-	text-decoration: none;
-	color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -35%);
+    text-decoration: none;
+    color: white;
 }
 
 .vcenter {

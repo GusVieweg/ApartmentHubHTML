@@ -14,23 +14,23 @@ function whoIsLoggedIn() {
 }
 
 function filter() {
-	var myData = JSON.parse(localStorage.getItem('loginInfo'));
-	var person = whoIsLoggedIn();
-	console.log(person + " is logged in ");
-	if( person == 0 ) {
-		alert('Please log in to filter this page.');
-	} else {
-		myData[person].filtered = 'yes';
-		localStorage.setItem('loginInfo', JSON.stringify(myData));
-		window.location.reload();
-	}
+    var myData = JSON.parse(localStorage.getItem('loginInfo'));
+    var person = whoIsLoggedIn();
+    console.log(person + " is logged in ");
+    if( person == 0 ) {
+        alert('Please log in to filter this page.');
+    } else {
+        myData[person].filtered = 'yes';
+        localStorage.setItem('loginInfo', JSON.stringify(myData));
+        window.location.reload();
+    }
 }
 
 function defilter() {
-	var myData = JSON.parse(localStorage.getItem('loginInfo'));
-	var person = whoIsLoggedIn();
-	console.log(person + " is logged in ");
-	myData[person].filtered = 'no';
-	localStorage.setItem('loginInfo', JSON.stringify(myData));
-	window.location.reload();
+    var myData = JSON.parse(localStorage.getItem('loginInfo'));
+    var person = whoIsLoggedIn();
+    console.log(person + " is logged in ");
+    myData[person].filtered = 'no';
+    localStorage.setItem('loginInfo', JSON.stringify(myData));
+    window.location.reload();
 }

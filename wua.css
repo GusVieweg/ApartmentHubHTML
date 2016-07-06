@@ -8,94 +8,94 @@ html, body {
 }
 
 table, tr {
-	width: 90%;
-	margin: 0 auto;
+    width: 90%;
+    margin: 0 auto;
 }
 
 td {
-	padding: 10px;
-	font-weight: bold;
-	text-align: center;
+    padding: 10px;
+    font-weight: bold;
+    text-align: center;
 }
 
 .patty {
-	border-right: 2px solid white;
+    border-right: 2px solid white;
 }
 
 .gus {
-	border-right: 2px solid white;
+    border-right: 2px solid white;
 }
 
 .bottomTB {
-	border-bottom: 2px solid white;
+    border-bottom: 2px solid white;
 }
 
 .lightBrown {
-	background-color: #AE7957;
-	border-radius: 10px;
+    background-color: #AE7957;
+    border-radius: 10px;
 }
 
 .return {
-	width: 10%;
-	height: 10%;
-	margin: 0% 0% 10% 25%;
-	float: left;
-	text-decoration: none;
-	color: white;
-	border: solid 2px grey;
-	background-color: #3F658C;
-	border-radius: 10px;
-	position: fixed;
-	bottom: -10%;
-	vertical-align: middle;
+    width: 10%;
+    height: 10%;
+    margin: 0% 0% 10% 25%;
+    float: left;
+    text-decoration: none;
+    color: white;
+    border: solid 2px grey;
+    background-color: #3F658C;
+    border-radius: 10px;
+    position: fixed;
+    bottom: -10%;
+    vertical-align: middle;
 }
 
 .addALocation {
-	width: 10%;
-	height: 10%;
-	margin: 0% 0% 10% 45%;
-	float: left;
-	text-decoration: none;
-	color: white;
-	border: solid 2px grey;
-	background-color: #3F658C;
-	border-radius: 10px;
-	position: fixed;
-	bottom: -10%;
-	vertical-align: middle;
+    width: 10%;
+    height: 10%;
+    margin: 0% 0% 10% 45%;
+    float: left;
+    text-decoration: none;
+    color: white;
+    border: solid 2px grey;
+    background-color: #3F658C;
+    border-radius: 10px;
+    position: fixed;
+    bottom: -10%;
+    vertical-align: middle;
 }
 
 .removeALocation {
-	width: 10%;
-	height: 10%;
-	margin: 0% 0% 10% 65%;
-	float: left;
-	text-decoration: none;
-	color: white;
-	border: solid 2px grey;
-	background-color: #3F658C;
-	border-radius: 10px;
-	position: fixed;
-	bottom: -10%;
-	vertical-align: middle;
+    width: 10%;
+    height: 10%;
+    margin: 0% 0% 10% 65%;
+    float: left;
+    text-decoration: none;
+    color: white;
+    border: solid 2px grey;
+    background-color: #3F658C;
+    border-radius: 10px;
+    position: fixed;
+    bottom: -10%;
+    vertical-align: middle;
 }
 
 #selectDivToRemove {
-	width: 100%;
-	height: 20%;
-	margin: 0%;
-	color: white;
-	background-color: #1C2B3E;
-	position: fixed;
-	bottom: 5%;
-	z-index: 9999;
+    width: 100%;
+    height: 20%;
+    margin: 0%;
+    color: white;
+    background-color: #1C2B3E;
+    position: fixed;
+    bottom: 5%;
+    z-index: 9999;
 }
 
 .textReturn {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	text-decoration: none;
-	color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-decoration: none;
+    color: white;
 }
