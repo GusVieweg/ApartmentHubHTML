@@ -1,5 +1,7 @@
 # ApartmentHubHTML
 
+[PAUSED DEVELOPMENT - 08/01/2016]
+
 ![The home screen](/imgs/ApartmentHub.png?raw=true "The Home Screen for the Apartment Hub")
 
 An organizational tool for me and my two other roommates, so we can easily keep track of chores, reminders, and achievements.
